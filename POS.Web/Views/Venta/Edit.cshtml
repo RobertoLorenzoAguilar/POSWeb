@@ -1,0 +1,85 @@
+﻿@model ProductoViewModel
+
+<div class=" card text-primary">
+    <div class="card-header text-center">
+        <h5>Editar Producto</h5>
+    </div>
+    <div class=" card-body text-primary">
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="IdProducto" />
+                    <div class="form-group">
+                        <label></label>
+                        <select class="form-control" asp-for="TipoProducto">
+                            <option value="">-- Seleccione un Tipo de Producto --</option>
+                            <option value="Producto">Producto</option>
+                            <option value="Servicio">Servicio</option>
+                        </select>
+                        <span asp-validation-for="TipoImpuesto" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NombreProducto" class="control-label"></label>
+                        <input asp-for="NombreProducto" class="form-control" />
+                        <span asp-validation-for="NombreProducto" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DescripcionProducto" class="control-label"></label>
+                        <textarea asp-for="DescripcionProducto" class="form-control"></textarea>
+                        <span asp-validation-for="DescripcionProducto" class="text-danger"></span>
+                    </div>                    
+                    <div class="form-group">
+                        <label asp-for="FolioProducto" class="control-label"></label>
+                        <input asp-for="FolioProducto" class="form-control"/>
+                        <span asp-validation-for="FolioProducto" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">                        
+                        <label style="display: block; text-align: left; margin-bottom: 0;">¿Tiene Impuesto?</label>
+                        <div class="form-check">
+                            <input asp-for="TieneImpuesto" class="form-check-input" />
+                            <span asp-validation-for="TieneImpuesto" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TipoImpuesto" class="control-label"></label>
+                        <select class="form-control" id="impuestoSelect" asp-for="TipoImpuesto">
+                            <option value="">-- Seleccione un impuesto --</option>
+                            <option value="IVA">IVA</option>
+                            <option value="ISR">ISR</option>
+                        </select>
+                        <span asp-validation-for="TipoImpuesto" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Traslado" class="control-label"></label>                        
+                        <div class="form-check">
+                            <input asp-for="Traslado" class="form-check-input" />
+                            <span asp-validation-for="Traslado" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Retencion" class="control-label"></label>                        
+                        <div class="form-check">
+                            <input asp-for="Retencion" class="form-check-input" />
+                            <span asp-validation-for="Retencion" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class=" card-footer text-center">
+                        <div class="form-group">
+                            <input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
+                            <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver a la lista</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+

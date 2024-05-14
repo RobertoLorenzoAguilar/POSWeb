@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Name": "POSAPI\\POS.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Name": "POS.Web\\POS.Web.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

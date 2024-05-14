@@ -1,0 +1,89 @@
+﻿@model SucursalViewModel
+
+<div class=" card text-primary">
+    <div class="card-header text-center">
+        <h5>Crear Sucursal</h5>
+    </div>
+    <div class=" card-body text-center">
+        <div class=" col-md-12">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="NombreSucursal" class="form-control" placeholder="Nombre Sucursal">
+                    <span asp-validation-for="NombreSucursal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="RazonSocialSucursal" class="form-control" placeholder="Razon Social Sucursal">
+                    <span asp-validation-for="RazonSocialSucursal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="CentroCostoSucursal" class="form-control" placeholder="Centro de Costos">
+                    <span asp-validation-for="CentroCostoSucursal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="CalleDireccionSucursal" class="form-control" placeholder="Calle">
+                    <span asp-validation-for="CalleDireccionSucursal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="NumeroDireccionSucursal" class="form-control" placeholder="Número">
+                    <span asp-validation-for="NumeroDireccionSucursal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="RfcSucursal" class="form-control" placeholder="RFC">
+                    <span asp-validation-for="RfcSucursal" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="IdEmpresa">Seleccione una Empresa:</label>
+                    <select id="selectEmpresas" class="form-control" asp-for="IdEmpresa">
+                        <option value="">-- Seleccione una Empresa --</option>
+                    </select>
+                    <span asp-validation-for="IdEmpresa" class="text-danger"></span>
+                </div>
+
+
+                <div class=" card-footer text-center">
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
+                        <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver a la Lista</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Realizar la petición AJAX al servidor
+            $.ajax({
+                url: 'http://localhost:5014/Empresas', // URL del endpoint para obtener las empresas
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Limpiar opciones actuales del select
+                    $('#selectEmpresas').empty();
+
+                    // Agregar opción inicial
+                    $('#selectEmpresas').append($('<option>').text('-- Seleccione una Empresa --').attr('value', ''));
+
+                    // Iterar sobre los datos recibidos y agregar opciones al select
+                    $.each(data, function (index, empresa) {
+                        $('#selectEmpresas').append($('<option>').text(empresa.razonSocialEmpresa).attr('value', empresa.idEmpresa));
+                    });
+                },
+                error: function () {
+                    console.error('Error al cargar las empresas.');
+                }
+            });
+        });
+    </script>
+}

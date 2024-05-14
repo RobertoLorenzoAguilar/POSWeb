@@ -1,0 +1,108 @@
+﻿@model SucursalViewModel
+
+<div class=" card text-primary">
+    <div class="card-header text-center">
+        <h5>Editar Empresa</h5>
+    </div>
+    <div class=" card-body text-primary">
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="IdSucursal" />
+                    <div class="form-group">
+                        <label asp-for="NombreSucursal" class="control-label"></label>
+                        <input asp-for="NombreSucursal" class="form-control" />
+                        <span asp-validation-for="NombreSucursal" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RazonSocialSucursal" class="control-label"></label>
+                        <textarea asp-for="RazonSocialSucursal" class="form-control"></textarea>
+                        <span asp-validation-for="RazonSocialSucursal" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CentroCostoSucursal" class="control-label"></label>
+                        <input asp-for="CentroCostoSucursal" class="form-control" />
+                        <span asp-validation-for="CentroCostoSucursal" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CalleDireccionSucursal" class="control-label"></label>
+                        <input asp-for="CalleDireccionSucursal" class="form-control" />
+                        <span asp-validation-for="CalleDireccionSucursal" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NumeroDireccionSucursal" class="control-label"></label>
+                        <input asp-for="NumeroDireccionSucursal" class="form-control" />
+                        <span asp-validation-for="NumeroDireccionSucursal" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RfcSucursal" class="control-label"></label>
+                        <input asp-for="RfcSucursal" class="form-control" />
+                        <span asp-validation-for="RfcSucursal" class="text-danger"></span>
+                    </div>
+                    @* <div class="form-group">
+                        <label asp-for="IdEmpresa" class="control-label"></label>
+                        <input asp-for="IdEmpresa" class="form-control" />
+                        <span asp-validation-for="IdEmpresa" class="text-danger"></span>
+                    </div> *@
+
+                    <div class="form-group">
+                        <label asp-for="IdEmpresa">Seleccione una Empresa:</label>
+                        <select id="IdEmpresa" class="form-control" asp-for="IdEmpresa">
+                            <option value="">-- Seleccione una Empresa --</option>
+                        </select>
+                        <span asp-validation-for="IdEmpresa" class="text-danger"></span>
+                    </div>
+
+
+
+                    <div class=" card-footer text-center">
+                        <div class="form-group">
+                            <input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
+                            <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver a la lista</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Realizar la petición AJAX al servidor para cargar las opciones del select
+            $.ajax({
+                url: 'http://localhost:5014/Empresas', // URL del endpoint para obtener las empresas
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Limpiar opciones actuales del select
+                    $('#IdEmpresa').empty();
+
+                    // Agregar opción inicial
+                    $('#IdEmpresa').append($('<option>').text('-- Seleccione una Empresa --').attr('value', ''));
+
+                    // Iterar sobre los datos recibidos y agregar opciones al select
+                    $.each(data, function (index, empresa) {
+                        $('#IdEmpresa').append($('<option>').text(empresa.razonSocialEmpresa).attr('value', empresa.idEmpresa));
+                    });
+
+                    // Obtener el valor de IdEmpresa desde el modelo
+                    var idEmpresaValue = '@Model.IdEmpresa'; // Obtener el valor del modelo en Razor
+
+                    // Seleccionar automáticamente la opción correspondiente en el select
+                    $('#IdEmpresa').val(idEmpresaValue);
+                },
+                error: function () {
+                    console.error('Error al cargar las empresas.');
+                }
+            });
+        });
+    </script>
+}
+
+
+
+
+

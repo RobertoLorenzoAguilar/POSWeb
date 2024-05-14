@@ -1,0 +1,154 @@
+﻿@model ClienteViewModel
+
+<div class=" card text-primary">
+    <div class="card-header text-center">
+        <h5>Crear Cliente</h5>
+    </div>
+    <div class=" card-body text-center">
+        <div class=" col-md-12">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="NombreCliente" class="form-control" placeholder="Nombre Cliente">
+                    <span asp-validation-for="NombreCliente" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="ApellidoPaterno" class="form-control" placeholder="Apellido Paterno">
+                    <span asp-validation-for="ApellidoPaterno" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="ApellidoMaterno" class="form-control" placeholder="Apellido Materno">
+                    <span asp-validation-for="ApellidoMaterno" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="RfcCliente" class="form-control" placeholder="RFC">
+                    <span asp-validation-for="RfcCliente" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="CalleDireccionCliente" class="form-control" placeholder="Calle">
+                    <span asp-validation-for="CalleDireccionCliente" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="NumeroDirecionCiente" class="form-control" placeholder="Número">
+                    <span asp-validation-for="NumeroDirecionCiente" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label></label>
+                    <select class="form-control" asp-for="TipoCliente">
+                        <option value="">-- Seleccione un Tipo de Cliente --</option>
+                        <option value="Público general">Público general</option>
+                        <option value="Preferencial">Preferencial</option>
+                        <option value="Empresarial">Empresarial</option>
+                    </select>
+                    <span asp-validation-for="TipoCliente" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="Descuento" id="porcentajeDescuento" class="form-control" placeholder="Porcentaje">
+                    <span asp-validation-for="Descuento" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="IdEmpresa">Seleccione una Empresa:</label>
+                    <select id="selectEmpresas" class="form-control" asp-for="IdEmpresa">
+                        <option value="">-- Seleccione una Empresa --</option>
+                    </select>
+                    <span asp-validation-for="IdEmpresa" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="IdEmpleado">Seleccione un Asesor:</label>
+                    <select id="selectEmpleados" class="form-control" asp-for="IdEmpleado">
+                        <option value="">-- Seleccione un Asesor --</option>
+                    </select>
+                    <span asp-validation-for="IdEmpleado" class="text-danger"></span>
+                </div>
+
+
+                <div class=" card-footer text-center">
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
+                        <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver a la Lista</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Realizar la petición AJAX al servidor
+            $.ajax({
+                url: 'http://localhost:5014/Empresas', // URL del endpoint para obtener las empresas
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Limpiar opciones actuales del select
+                    $('#selectEmpresas').empty();
+
+                    // Agregar opción inicial
+                    $('#selectEmpresas').append($('<option>').text('-- Seleccione una Empresa --').attr('value', ''));
+
+                    // Iterar sobre los datos recibidos y agregar opciones al select
+                    $.each(data, function (index, empresa) {
+                        $('#selectEmpresas').append($('<option>').text(empresa.razonSocialEmpresa).attr('value', empresa.idEmpresa));
+                    });
+                },
+                error: function () {
+                    console.error('Error al cargar las empresas.');
+                }
+            });
+
+            // Petición empleados tipo  asesor de venta
+            $.ajax({
+                url: 'http://localhost:5014/Empleado/GetEmpleadoTipo', // URL del endpoint para obtener las empresas
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Limpiar opciones actuales del select
+                    $('#selectEmpleados').empty();
+
+                    // Agregar opción inicial
+                    $('#selectEmpleados').append($('<option>').text('-- Seleccione un Asesor --').attr('value', ''));
+
+                    // Iterar sobre los datos recibidos y agregar opciones al select
+                    $.each(data, function (index, empleado) {
+                        $('#selectEmpleados').append($('<option>').text((empleado.nombreEmpleado + " " + empleado.apellidoPaterno)).attr('value', empleado.idEmpleado));
+                    });
+                },
+                error: function () {
+                    console.error('Error al cargar los asesores.');
+                }
+            });
+
+
+            $('#porcentajeDescuento').hide();
+
+            $('#TipoCliente').change(function () {
+                var selectedTipoUsuario = $(this).val();
+                if (selectedTipoUsuario !== 'Público general') {
+                    $('#porcentajeDescuento').show(); // Mostrar el campo de porcentaje de descuento
+                    $('#selectEmpleados').show(); // Id a guardar debera ser 0
+                } else {
+                    $('#porcentajeDescuento').hide(); // Ocultar el campo de porcentaje de descuento
+                    $('#porcentajeDescuento').val(0); // si es publico general poner en cero porcentaje
+                    $('#selectEmpleados').hide(); // Público general  no hay descuento
+                    $('#selectEmpleados').val(0); // Id a guardar debera ser 0
+                }
+            });
+        });
+    </script>
+}

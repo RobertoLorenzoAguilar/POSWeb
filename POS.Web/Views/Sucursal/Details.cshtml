@@ -1,0 +1,66 @@
+﻿@model SucursalViewModel
+
+
+<div class=" card text-primary">
+    <div class=" card-header text-center ">
+        <h5>Sucursal</h5>
+    </div>
+    <div class=" card-body ">
+        <dl class="row">
+            <dt class="col-sm-2 text-center text-dark">
+                Nombre Sucursal
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NombreSucursal)
+            </dd>
+
+            <dt class="col-sm-2 text-center text-dark">
+                Razon Social Sucursal
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RazonSocialSucursal)
+            </dd>
+
+            <dt class="col-sm-2 text-center text-dark">
+                Centro de Costos
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CentroCostoSucursal)
+            </dd>
+
+            <dt class="col-sm-2 text-center text-dark">
+                Calle
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CalleDireccionSucursal)
+            </dd>
+
+            <dt class="col-sm-2 text-center text-dark">
+                Número
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumeroDireccionSucursal)
+
+            </dd>
+
+            <dt class="col-sm-2 text-center text-dark">
+                RFC
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RfcSucursal)
+            </dd>
+            <dt class="col-sm-2 text-center text-dark">
+                Empresa
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RazonSocialEmpresa)
+            </dd>
+
+
+        </dl>
+    </div>
+    <div class=" card-footer text-center">
+        <a asp-action="Edit" asp-route-id="@Model.IdSucursal" class="btn btn-outline-warning btn-sm">Editar</a>
+        <a asp-action="Index" class=" btn btn-outline-success btn-sm">volver a la lista</a>
+    </div>
+</div>

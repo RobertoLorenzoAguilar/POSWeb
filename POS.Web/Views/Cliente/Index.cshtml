@@ -1,0 +1,105 @@
+﻿@model IEnumerable<ClienteViewModel>
+
+<div class="card text-primary">
+    <div class="card-header text-center">
+        <h5>Lista de Clientes</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a asp-action="Create" class="btn btn-outline-primary btn-sm">Crear Nuevo</a>
+                        <hr />
+                        <h5 class="panel-title">Productos</h5>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover table-responsive table-striped" id="MyTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Nombre Cliente
+                                    </th>
+                                    <th>
+                                        Apellido Paterno
+                                    </th>
+                                    <th>
+                                        Apellido Materno
+                                    </th>
+                                    <th>
+                                        RFC
+                                    </th>
+                                    <th>
+                                        Calle
+                                    </th>
+                                    <th>
+                                        Número
+                                    </th>
+                                    <th>
+                                        Tipo Cliente
+                                    </th>
+                                    <th>
+                                        Descuento
+                                    </th>
+                                    <th>
+                                        Empresa
+                                    </th>
+                                    <th>
+                                        Asesor
+                                    </th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NombreCliente)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ApellidoPaterno)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ApellidoMaterno)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.RfcCliente)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CalleDireccionCliente)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NumeroDirecionCiente)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TipoCliente)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Descuento)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.RazonSocialEmpresa)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TipoUsuario)
+                                        </td>
+
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.IdCliente" class="btn btn-outline-warning btn-sm">Editar</a>
+                                            <a asp-action="Details" asp-route-id="@item.IdCliente" class="btn btn-outline-info btn-sm">Detalles</a>
+                                            <a asp-action="Delete" asp-route-id="@item.IdCliente" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-muted text-center">
+        Crud Productos
+    </div>
+</div>

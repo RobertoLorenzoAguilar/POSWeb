@@ -1,0 +1,400 @@
+﻿@model VentaViewModel
+
+<div class=" card text-primary">
+    <div class="card-header text-center">
+        <h5>Generar Venta</h5>
+    </div>
+    <div class=" card-body text-center">
+        <div class=" col-md-12">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                <div class="form-group">
+                    <label>Cliente RFC:</label>
+                    <select id="selectCliente" class="form-control" asp-for="IdCliente">
+                        <option value="">-- Seleccione Cliente --</option>
+                    </select>
+                    <span asp-validation-for="IdCliente" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Empleado Usuario:</label>
+                    <select id="selectEmpleado" class="form-control" asp-for="IdEmpleado">
+                        <option value="">-- Seleccione Empleado --</option>
+                    </select>
+                    <span asp-validation-for="IdEmpleado" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Tipo Venta:</label>
+                    <select id="selectTipoVenta" class="form-control" asp-for="TipoVenta">
+                        <option value="">-- Seleccione Tipo Venta --</option>
+                        <option value="contado">Contado</option>
+                        <option value="credito">Crédito</option>
+                    </select>
+                    <span asp-validation-for="TipoVenta" class="text-danger"></span>
+                </div>
+                     
+                <div class="form-group">
+                    <label>Sucursal Nombre (Asignada al Empleado):</label>
+                    <input readonly asp-for="TotalVenta" id="selectSucursal" class="form-control" placeholder="">
+                    <span asp-validation-for="TotalVenta" id="selectSucursal" class="text-danger"></span>
+                </div>
+
+                @* detalle producto *@
+                <div class="form-group">
+                    <label>Agregar Servicio o Producto:</label>
+                    <div class="input-group" id="servicioProductoHidden">
+                        <input id="servicioProducto" class="form-control" placeholder="">
+                        <div class="input-group-append">
+                            <button type="button" id="btnAgregarProducto" class="btn btn-primary">Agregar</button>
+                        </div>
+                    </div>
+                    <span asp-validation-for="TotalVenta" id="selectSucursal" class="text-danger"></span>
+                </div>
+
+                <div class="container">
+                    <label></label>
+                    <div class="row">
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Folio</th>
+                                    <th>Nombre</th>
+                                    <th>Precio Unitario</th>
+                                    <th>Cantidad</th>
+                                    <th>Retención</th>
+                                    <th>Traslado</th>
+                                    <th>Subtotal</th>
+                                    <th>Total</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                @* !-- Agrega los campos para mostrar los totales --> *@
+                <div class="container">
+                    <div class="row mt-3">
+                        <div class="col-6 offset-md-6 text-right">
+                            <label for="subtotal">Subtotal:</label>
+                            <input type="text" class="form-control form-control-sm" id="subtotal" readonly>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6 offset-md-6 text-right">
+                            <label for="descuentos">Descuentos:</label>
+                            <input type="text" class="form-control form-control-sm" id="descuentos" readonly>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6 offset-md-6 text-right">
+                            <label for="impuestos">Impuestos:</label>
+                            <input type="text" class="form-control form-control-sm" id="impuestos" readonly>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6 offset-md-6 text-right">
+                            <label for="total">Total:</label>
+                            <input type="text" class="form-control form-control-sm" id="total" readonly>
+                        </div>
+                    </div>
+                </div>                
+
+                <div class=" card-footer text-center">
+                    <label></label>
+                    <div class="form-group">
+                        <input type="submit" value="Generar Venta" class="btn btn-outline-primary btn-sm" />
+                        <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver a la Lista</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @* el Orden es eimportante *@
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+    <script src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+    <!-- Incluir jQuery desde CDN -->
+    @* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> *@
+
+    <!-- Incluir jQuery DataTables desde CDN -->
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- Incluir jQuery DataTables desde CDN Iconos -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+
+    <script>
+        $(document).ready(function () {
+
+            // Manejar clic en el botón de eliminar
+            $('#example').on('click', '.eliminar', function () {
+                this.remove().draw(false); // Remover la fila y redibujar la tabla
+            });
+
+            var dataTable = $('#example').DataTable({
+                columns: [
+                    { data: 'Folio' },
+                    { data: 'Nombre' },
+                    { data: 'PrecioUnitario' },
+                    {
+                        data: 'Cantidad',
+                        title: 'Cantidad',
+                        render: function (data, type, row) {
+                            if (type === 'display') {
+                                // Mostrar un campo numérico y un botón para ajustar la cantidad
+                                return '<div class="input-group">' +
+                                    '<input type="number" class="form-control" value="' + data + '" />' +
+                                    '<div class="input-group-append">' +
+                                    '<button class="btn btn-outline-secondary increment" type="button">+</button>' +
+                                    '<button class="btn btn-outline-secondary decrement" type="button">-</button>' +
+                                    '</div>' +
+                                    '</div>';
+                            } else {
+                                // En otras situaciones, devolver solo el valor de la cantidad
+                                return data;
+                            }
+                        }
+                    },
+                    { data: 'Retencion' }, // ISR
+                    { data: 'Traslado' },  // IVA
+                    { data: 'Subtotal' },
+                    { data: 'Total' },
+                    {
+                        data: 'Eliminar',
+                        title: 'Eliminar',
+                        "render": function (data, type, row) {
+                            // Renderizar los botones en la columna "Acciones"
+                            return `<button class="eliminarBtn" data-id="${row.idProducto}"><i class="fa fa-trash-alt"></i></button> `;
+                        }
+                    }
+
+                ]
+            });
+
+            // Manejar el evento clic del botón de incremento
+            $('#example').on('click', '.increment', function () {
+                var cell = $(this).closest('td');
+                var input = cell.find('input');
+                var currentValue = parseInt(input.val(), 10);
+                input.val(currentValue + 1).trigger('change'); // Incrementar la cantidad y activar el evento 'change'
+            });
+
+            // Manejar el evento clic del botón de decremento
+            $('#example').on('click', '.decrement', function () {
+                var cell = $(this).closest('td');
+                var input = cell.find('input');
+                var currentValue = parseInt(input.val(), 10);
+                if (currentValue > 0) {
+                    input.val(currentValue - 1).trigger('change'); // Decrementar la cantidad y activar el evento 'change'
+                }
+            });
+
+            // Manejar el cambio en el campo numérico de cantidad
+            $('#example').on('change', 'input[type="number"]', function () {
+                var cell = $(this).closest('td');
+                var rowIndex = dataTable.cell(cell).index().row;
+                var newData = dataTable.row(rowIndex).data();
+                newData.Cantidad = parseInt($(this).val(), 10);
+                dataTable.row(rowIndex).data(newData).draw();
+            });
+
+
+            // Manejar el evento clic del botón "Agregar Producto"
+            $("#btnAgregarProducto").click(function () {
+                // Obtener el valor del campo oculto (ID del producto)
+
+                var idProducto = $("#servicioProductoHidden").val();
+
+                // Obtener los valores del producto seleccionado
+                var folio = "TEst"
+                var nombreProducto = $('#servicioProducto').val();
+                var idProducto = $('#servicioProductoHidden').val();
+                var precioUnitario = 0; 
+                var cantidad = 1; 
+                var retencion = 0; 
+                var traslado = 0; 
+                var subtotal = 0; 
+                var total = 0; 
+
+                // Crear un objeto con los datos del nuevo elemento a agregar al DataTable
+                var newData = {
+                    Folio: nombreProducto,
+                    Nombre: nombreProducto,
+                    PrecioUnitario: precioUnitario,
+                    Cantidad: cantidad,
+                    Retencion: retencion,
+                    Traslado: traslado,
+                    Subtotal: cantidad * precioUnitario,
+                    Total: total
+                };
+
+                // Agregar la nueva fila al DataTable
+                var table = $('#example').DataTable();
+                table.row.add(newData).draw(); // Agregar la fila y volver a dibujar el DataTable
+
+                // Limpiar los campos de entrada después de agregar el producto
+                $('#servicioProducto').val('');
+                $('#servicioProductoHidden').val('');
+                //     // Hacer algo con el ID del producto, por ejemplo, enviarlo a través de AJAX
+                //     if (idProducto) {
+                //         // Realizar una solicitud AJAX para agregar el producto con el ID
+                //         $.ajax({
+                //             url: 'http://localhost:5014/agregarProducto',
+                //             method: 'POST',
+                //             data: {
+                //                 idProducto: idProducto
+                //                 // Puedes incluir más datos del formulario si es necesario
+                //             },
+                //             success: function (response) {
+                //                 // Manejar la respuesta del servidor si es necesario
+                //                 console.log("Producto agregado exitosamente:", response);
+                //                 // Puedes realizar más acciones después de agregar el producto
+                //             },
+                //             error: function (xhr, status, error) {
+                //                 // Manejar errores de la solicitud AJAX si ocurren
+                //                 console.error("Error al agregar producto:", error);
+                //             }
+                //         });
+                //     } else {
+                //         console.log("No se ha seleccionado ningún producto.");
+                //         // Puedes mostrar un mensaje de error o realizar otras acciones si no se seleccionó ningún producto
+                //     }
+                // });
+            });
+
+            $('#example').on('click', 'tr', function () {
+                var jsData = dataTable.row(this).data();
+                $('#primary').modal('show');
+                $('#primary').text(jsData[0]); //[0] will display 1st column of your table
+                $.get(jsData.url, function (data, status) {
+                    /*         document.getElementById("imagepreview").src = data.sprites.back_default;*/
+                    $("#nombre").text(data.name);
+                    $("#peso").text(data.weight);
+                    $("#base_experience").text(data.base_experience);
+
+                    $("#imgPokemones").html("");
+                    $.each(data.sprites, function (key, value) {
+
+                        if (value != null && key != "versions" && key != "other") {
+                            console.log(key + ": " + value);
+                            var img = document.createElement("img");
+                            img.src = value;
+                            var src = document.getElementById("imgPokemones");
+                            src.appendChild(img);
+                        }
+                    });
+                });
+            })
+            //termina parte peticion
+
+
+            // Función genérica para cargar opciones en un selector
+            function cargarOpciones(url, selector, optionText) {
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        // Limpiar opciones actuales del selector
+                        $(selector).empty();
+
+                        // Agregar opción inicial
+                        $(selector).append($('<option>').text('-- Seleccione ' + optionText + ' --').attr('value', ''));
+
+
+
+                        if (selector == '#selectSucursal') {
+
+                            $(selector).val(data.nombreSucursal);
+
+
+                        } else if (selector == '#selectEmpleado') {
+                            $.each(data, function (index, item) {
+                                $(selector).append($('<option>').text(item.usuarioSistema).attr('value', item.idEmpleado));
+                            });
+                        } else if (selector == '#selectCliente') {
+                            $.each(data, function (index, item) {
+                                $(selector).append($('<option>').text(item.rfcCliente).attr('value', item.idCliente));
+                            });
+                        }
+                    },
+                    error: function () {
+                        console.error('Error al cargar ' + optionText.toLowerCase() + '.');
+                    }
+                });
+            }
+
+            $('#selectEmpleado').change(function () {
+                //Obtener el ID del Empleado
+                let idEmpleadoSeleccionado = this.value;
+
+                // Construir la URL para obtener las sucursales por empleado
+                let url = `http://localhost:5014/Empleado/getEmpleadoById?IdEmpleado=${idEmpleadoSeleccionado}`;
+
+                // Cargar opciones de sucursales relacionadas con el empleado seleccionado
+                cargarOpciones(url, '#selectSucursal', 'una Sucursal');
+
+
+            });
+
+            // Cargar empleados (tipo Asesor de Venta)
+            cargarOpciones('http://localhost:5014/Empleados', '#selectEmpleado', 'Empleado');
+
+            // Cargar clientes
+            cargarOpciones('http://localhost:5014/Clientes', '#selectCliente', 'Cliente');
+        });
+
+
+        // Configurar Autocompletado
+        $("#servicioProducto").autocomplete({
+            source: function (request, response) {
+                // Realiza una llamada a tu API para obtener resultados
+                $.ajax({
+                    url: 'http://localhost:5014/Productos/buscar',
+                    dataType: 'json',
+                    data: {
+                        term: request.term
+                    },
+                    success: function (data) {
+                        var parsedData = [];
+
+                        // Itera sobre los datos para construir las sugerencias
+                        $.each(data, function (index, item) {
+                            parsedData.push({
+                                label: item.nombreProducto, // Texto visible en las sugerencias
+                                value: item.idProducto, // Valor mostrado en el campo de entrada
+                                id: item.id // Valor oculto asociado al elemento
+                            });
+                        });
+
+                        response(parsedData); // Devuelve los datos parseados para Autocomplete
+                    }
+                });
+            },
+            minLength: 2, // Número mínimo de caracteres antes de mostrar sugerencias
+            select: function (event, ui) {
+                $("#servicioProducto").val(ui.item.label); // Establece el valor visible en el campo de entrada
+                $("#servicioProductoHidden").val(ui.item.value); // Establece el valor oculto en el campo oculto
+
+                // Asegúrate de que 'return false;' esté deteniendo la propagación del evento si es necesario
+                return false;
+
+            }
+        });
+
+
+
+
+    </script>
+}

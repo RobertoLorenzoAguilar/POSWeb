@@ -1,0 +1,48 @@
+﻿@model EmpresaViewModel
+
+<div class=" card text-primary">
+    <div class="card-header text-center">
+        <h5>Crear Empresa</h5>
+    </div>
+    <div class=" card-body text-center">
+        <div class=" col-md-12">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="RazonSocialEmpresa" class="form-control" placeholder="Razon Social Empresa">
+                    <span asp-validation-for="RazonSocialEmpresa" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="CalleDireccionEmpresa" class="form-control" placeholder="Calle">
+                    <span asp-validation-for="CalleDireccionEmpresa" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="NumeroDireccionEmpresa" class="form-control" placeholder="Número">
+                    <span asp-validation-for="NumeroDireccionEmpresa" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="CiudadEmpresa" class="form-control" placeholder="Ciudad">
+                    <span asp-validation-for="CiudadEmpresa" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="RfcEmpresa" class="form-control" placeholder="RFC">
+                    <span asp-validation-for="RfcEmpresa" class="text-danger"></span>
+                </div>                
+
+                <div class=" card-footer text-center">
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
+                        <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver a la Lista</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>

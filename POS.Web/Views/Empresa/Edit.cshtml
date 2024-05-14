@@ -1,0 +1,55 @@
+﻿@model EmpresaViewModel
+
+<div class=" card text-primary">
+    <div class="card-header text-center">
+        <h5>Editar Empresa</h5>
+    </div>
+    <div class=" card-body text-primary">
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="IdEmpresa" />
+                    <div class="form-group">
+                        <label asp-for="RazonSocialEmpresa" class="control-label"></label>
+                        <input asp-for="RazonSocialEmpresa" class="form-control" />
+                        <span asp-validation-for="RazonSocialEmpresa" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CalleDireccionEmpresa" class="control-label"></label>
+                        <textarea asp-for="CalleDireccionEmpresa" class="form-control"></textarea>
+                        <span asp-validation-for="CalleDireccionEmpresa" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NumeroDireccionEmpresa" class="control-label"></label>
+                        <input asp-for="NumeroDireccionEmpresa" class="form-control" />
+                        <span asp-validation-for="NumeroDireccionEmpresa" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CiudadEmpresa" class="control-label"></label>
+                        <input asp-for="CiudadEmpresa" class="form-control" />
+                        <span asp-validation-for="CiudadEmpresa" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RfcEmpresa" class="control-label"></label>
+                        <input asp-for="RfcEmpresa" class="form-control" />
+                        <span asp-validation-for="RfcEmpresa" class="text-danger"></span>
+                    </div>
+                    <div class=" card-footer text-center">
+                        <div class="form-group">
+                            <input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
+                            <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver a la lista</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+

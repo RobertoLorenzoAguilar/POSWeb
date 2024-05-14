@@ -1,0 +1,546 @@
+[
+  {
+    "ContainingType": "WebContratos.Controllers.ClienteController",
+    "Method": "GetClienteById",
+    "RelativePath": "Cliente/getClienteById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdCliente",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.ClienteController",
+    "Method": "AgregarCliente",
+    "RelativePath": "Cliente/guardar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Cliente",
+        "Type": "Datos.Models.TblCliente",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.ClienteController",
+    "Method": "GetClientes",
+    "RelativePath": "Clientes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.ClienteController",
+    "Method": "ActualizarCliente",
+    "RelativePath": "Clientes/actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Cliente",
+        "Type": "Datos.Models.TblCliente",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.ClienteController",
+    "Method": "EliminarCliente",
+    "RelativePath": "Clientes/eliminar",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdCliente",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.EmpleadoController",
+    "Method": "GetEmpleadoById",
+    "RelativePath": "Empleado/getEmpleadoById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdEmpleado",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.EmpleadoController",
+    "Method": "GetEmpleadoTipo",
+    "RelativePath": "Empleado/GetEmpleadoTipo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.EmpleadoController",
+    "Method": "AgregarEmpleado",
+    "RelativePath": "Empleado/guardar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Empleado",
+        "Type": "Datos.Models.TblEmpleado",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.EmpleadoController",
+    "Method": "GetEmpleados",
+    "RelativePath": "Empleados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.EmpleadoController",
+    "Method": "ActualizarEmpleado",
+    "RelativePath": "Empleados/actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Empleado",
+        "Type": "Datos.Models.TblEmpleado",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.EmpleadoController",
+    "Method": "EliminarEmpleado",
+    "RelativePath": "Empleados/eliminar",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdEmpleado",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.EmpresaController",
+    "Method": "GetEmpresaById",
+    "RelativePath": "Empresa/getEmpresaById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdEmpresa",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.EmpresaController",
+    "Method": "AgregarEmpresa",
+    "RelativePath": "Empresa/guardar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "empresa",
+        "Type": "Datos.Models.TblEmpresa",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.EmpresaController",
+    "Method": "GetEmpresas",
+    "RelativePath": "Empresas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.EmpresaController",
+    "Method": "ActualizarEmpresa",
+    "RelativePath": "Empresas/actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "empresa",
+        "Type": "Datos.Models.TblEmpresa",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.EmpresaController",
+    "Method": "EliminarEmpresa",
+    "RelativePath": "Empresas/eliminar",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdEmpresa",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.ProductoController",
+    "Method": "GetProductoById",
+    "RelativePath": "Producto/getProductoById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdProducto",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.ProductoController",
+    "Method": "AgregarProducto",
+    "RelativePath": "Producto/guardar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Producto",
+        "Type": "Datos.Models.TblProducto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.ProductoController",
+    "Method": "GetProductos",
+    "RelativePath": "Productos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.ProductoController",
+    "Method": "ActualizarProducto",
+    "RelativePath": "Productos/actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Producto",
+        "Type": "Datos.Models.TblProducto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.ProductoController",
+    "Method": "BuscarProductos",
+    "RelativePath": "Productos/buscar",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "term",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.ProductoController",
+    "Method": "EliminarProducto",
+    "RelativePath": "Productos/eliminar",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdProducto",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.SucursalController",
+    "Method": "GetSucursalById",
+    "RelativePath": "Sucursal/getSucursalById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdSucursal",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.SucursalController",
+    "Method": "AgregarSucursal",
+    "RelativePath": "Sucursal/guardar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Sucursal",
+        "Type": "Datos.Models.TblSucursal",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.SucursalController",
+    "Method": "GetSucursals",
+    "RelativePath": "Sucursals",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.SucursalController",
+    "Method": "ActualizarSucursal",
+    "RelativePath": "Sucursals/actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Sucursal",
+        "Type": "Datos.Models.TblSucursal",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.SucursalController",
+    "Method": "EliminarSucursal",
+    "RelativePath": "Sucursals/eliminar",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdSucursal",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.VentaController",
+    "Method": "GetVentaById",
+    "RelativePath": "Venta/getVentaById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdVenta",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.VentaController",
+    "Method": "AgregarVenta",
+    "RelativePath": "Venta/guardar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Venta",
+        "Type": "Datos.Models.TblVentum",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.VentaDetalleController",
+    "Method": "GetVentaDetalleById",
+    "RelativePath": "VentaDetalle/getVentaDetalleById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdVentaDetalle",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.VentaDetalleController",
+    "Method": "AgregarVentaDetalle",
+    "RelativePath": "VentaDetalle/guardar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "VentaDetalle",
+        "Type": "Datos.Models.TblVentaDetalle",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.VentaDetalleController",
+    "Method": "GetVentaDetalles",
+    "RelativePath": "VentaDetalles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.VentaDetalleController",
+    "Method": "ActualizarVentaDetalle",
+    "RelativePath": "VentaDetalles/actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "VentaDetalle",
+        "Type": "Datos.Models.TblVentaDetalle",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.VentaDetalleController",
+    "Method": "EliminarVentaDetalle",
+    "RelativePath": "VentaDetalles/eliminar",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdVentaDetalle",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.VentaController",
+    "Method": "GetVentas",
+    "RelativePath": "Ventas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.VentaController",
+    "Method": "ActualizarVenta",
+    "RelativePath": "Ventas/actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Venta",
+        "Type": "Datos.Models.TblVentum",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.VentaController",
+    "Method": "EliminarVenta",
+    "RelativePath": "Ventas/eliminar",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdVenta",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
