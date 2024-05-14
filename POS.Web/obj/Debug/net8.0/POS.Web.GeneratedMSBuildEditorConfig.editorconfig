@@ -17,147 +17,147 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = POS.Web
 build_property.RootNamespace = POS.Web
-build_property.ProjectDir = C:\Users\R\source\repos\PosWeb\POS.Web\
+build_property.ProjectDir = C:\Users\R\source\repos\POSWeb\POS.Web\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\R\source\repos\PosWeb\POS.Web
+build_property.MSBuildProjectDirectory = C:\Users\R\source\repos\POSWeb\POS.Web
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Cliente/Create - Copy.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Cliente/Create - Copy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDcmVhdGUgLSBDb3B5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Cliente/Create.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Cliente/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Cliente/Details.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Cliente/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Cliente/Edit.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Cliente/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Cliente/Index.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Cliente/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Empleado/Create.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Empleado/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Empleado/Details.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Empleado/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9cRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Empleado/Edit.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Empleado/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9cRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Empleado/Index.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Empleado/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Empresa/Create.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Empresa/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Empresa/Details.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Empresa/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Empresa/Edit.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Empresa/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Empresa/Index.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Empresa/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Producto/Create - Copy (2).cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Producto/Create - Copy (2).cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cQ3JlYXRlIC0gQ29weSAoMikuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Producto/Create - Copy.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Producto/Create - Copy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cQ3JlYXRlIC0gQ29weS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Producto/Create.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Producto/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Producto/Details.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Producto/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Producto/Edit.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Producto/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Producto/Index.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Producto/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Shared/Error.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Sucursal/Create.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Sucursal/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VjdXJzYWxcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Sucursal/Details.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Sucursal/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VjdXJzYWxcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Sucursal/Edit.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Sucursal/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VjdXJzYWxcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Sucursal/Index.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Sucursal/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VjdXJzYWxcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Venta/Create - Copy (2).cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Venta/Create - Copy (2).cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFcQ3JlYXRlIC0gQ29weSAoMikuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Venta/Create - Copy.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Venta/Create - Copy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFcQ3JlYXRlIC0gQ29weS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Venta/Create.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Venta/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Venta/Details.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Venta/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Venta/Edit.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Venta/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Venta/Index.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Venta/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/_ViewImports.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/_ViewStart.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/R/source/repos/PosWeb/POS.Web/Views/Shared/_Layout.cshtml]
+[C:/Users/R/source/repos/POSWeb/POS.Web/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-3uy6bn8efq

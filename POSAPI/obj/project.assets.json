@@ -7457,11 +7457,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\R\\source\\repos\\PosWeb\\POSAPI\\POS.API.csproj",
+      "projectUniqueName": "C:\\Users\\R\\source\\repos\\POSWeb\\POSAPI\\POS.API.csproj",
       "projectName": "POS.API",
-      "projectPath": "C:\\Users\\R\\source\\repos\\PosWeb\\POSAPI\\POS.API.csproj",
+      "projectPath": "C:\\Users\\R\\source\\repos\\POSWeb\\POSAPI\\POS.API.csproj",
       "packagesPath": "C:\\Users\\R\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\R\\source\\repos\\PosWeb\\POSAPI\\obj\\",
+      "outputPath": "C:\\Users\\R\\source\\repos\\POSWeb\\POSAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\R\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7478,8 +7478,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\R\\source\\repos\\PosWeb\\Negocios\\Negocios.csproj": {
-              "projectPath": "C:\\Users\\R\\source\\repos\\PosWeb\\Negocios\\Negocios.csproj"
+            "C:\\Users\\R\\source\\repos\\POSWeb\\Negocios\\Negocios.csproj": {
+              "projectPath": "C:\\Users\\R\\source\\repos\\POSWeb\\Negocios\\Negocios.csproj"
             }
           }
         }

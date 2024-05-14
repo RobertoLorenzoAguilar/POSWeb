@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LDuXd6v9lrg3Nd2Oa4RjfLmvIkkid4wiV1R6wgDXOelfStCBeXeFPw9I/Oanq0V3kTsvVczu0nPAIo+YriwMNA==",
+  "dgSpecHash": "hojriHzY+TF1STunmOKjobcV1qL4VAtdDzhHK7l+AAbz/u+U95h/A94a9dG/ETr8AFexMZYnetRzDqzF2BzDSg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\R\\source\\repos\\PosWeb\\Datos\\Datos.csproj",
+  "projectFilePath": "C:\\Users\\R\\source\\repos\\POSWeb\\Datos\\Datos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\R\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\R\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

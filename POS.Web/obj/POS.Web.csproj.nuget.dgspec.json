@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\R\\source\\repos\\PosWeb\\POS.Web\\POS.Web.csproj": {}
+    "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\POS.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\R\\source\\repos\\PosWeb\\POS.Web\\POS.Web.csproj": {
+    "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\POS.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\R\\source\\repos\\PosWeb\\POS.Web\\POS.Web.csproj",
+        "projectUniqueName": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\POS.Web.csproj",
         "projectName": "POS.Web",
-        "projectPath": "C:\\Users\\R\\source\\repos\\PosWeb\\POS.Web\\POS.Web.csproj",
+        "projectPath": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\POS.Web.csproj",
         "packagesPath": "C:\\Users\\R\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\R\\source\\repos\\PosWeb\\POS.Web\\obj\\",
+        "outputPath": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\R\\AppData\\Roaming\\NuGet\\NuGet.Config",

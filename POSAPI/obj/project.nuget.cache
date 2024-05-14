@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wNRDVxxa2HcC0VnpfwDKwHLasV95kSrOxZgg0r5GahPNnir6tXEH3VjHrBhDZf8w65ggiKLoexYPDBm6/MWfwA==",
+  "dgSpecHash": "vvG6qYCOxNtd05vCtmxV0JP6UWLmL9uOJh0/ksDJCje9a8FO2kvaLNVoOoidcv89aAjwrQGIkzRIvjUjHHreEw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\R\\source\\repos\\PosWeb\\POSAPI\\POS.API.csproj",
+  "projectFilePath": "C:\\Users\\R\\source\\repos\\POSWeb\\POSAPI\\POS.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\R\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\R\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

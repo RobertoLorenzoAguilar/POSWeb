@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\R\\source\\repos\\PosWeb\\Datos\\Datos.csproj": {}
+    "C:\\Users\\R\\source\\repos\\POSWeb\\Datos\\Datos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\R\\source\\repos\\PosWeb\\Datos\\Datos.csproj": {
+    "C:\\Users\\R\\source\\repos\\POSWeb\\Datos\\Datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\R\\source\\repos\\PosWeb\\Datos\\Datos.csproj",
+        "projectUniqueName": "C:\\Users\\R\\source\\repos\\POSWeb\\Datos\\Datos.csproj",
         "projectName": "Datos",
-        "projectPath": "C:\\Users\\R\\source\\repos\\PosWeb\\Datos\\Datos.csproj",
+        "projectPath": "C:\\Users\\R\\source\\repos\\POSWeb\\Datos\\Datos.csproj",
         "packagesPath": "C:\\Users\\R\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\R\\source\\repos\\POSWeb\\Datos\\obj\\",
         "projectStyle": "PackageReference",

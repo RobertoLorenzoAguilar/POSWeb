@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SJfrIOatX4qURfgVJXALFy4t/AFvLAxt+LBEV3LHL1cPqK+6SYYrwrqlKLvX+NUiKn0XM+1kkBsXdMPmu/qU0A==",
+  "dgSpecHash": "wBGMT3Uvy+cRbPGSfl/7sdT6hVJR05/gwVd6knbwrXMcWFca7Ap9ysHaWCHbx+ZAuS5dIx7bYkMXbaPGTONt8Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\R\\source\\repos\\PosWeb\\POS.Web\\POS.Web.csproj",
+  "projectFilePath": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\POS.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\R\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\R\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

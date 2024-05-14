@@ -223,3 +223,4 @@ C:\Users\R\source\repos\POSWeb\POS.Web\obj\Debug\net8.0\refint\POS.Web.dll
 C:\Users\R\source\repos\POSWeb\POS.Web\obj\Debug\net8.0\POS.Web.pdb
 C:\Users\R\source\repos\POSWeb\POS.Web\obj\Debug\net8.0\POS.Web.genruntimeconfig.cache
 C:\Users\R\source\repos\POSWeb\POS.Web\obj\Debug\net8.0\ref\POS.Web.dll
+C:\Users\R\source\repos\POSWeb\POS.Web\obj\Debug\net8.0\POS.Web.sourcelink.json

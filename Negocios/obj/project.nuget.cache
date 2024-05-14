@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CDmQ1ZN9xljM3Vy0wynR3n08mDJ/5IUS1JMulaLX0dqSZwZcDABKvIfiKWH0zQ3jtM4rUtNt0KCSIvk2JNokkw==",
+  "dgSpecHash": "8qbTdxFt18mu30I4F68nERmMWDKoRpeJM+qOzbgi/F+vEId55fjIOjHxL3h5mao3kpm1svYoz5hrbODzCzXJFQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\R\\source\\repos\\PosWeb\\Negocios\\Negocios.csproj",
+  "projectFilePath": "C:\\Users\\R\\source\\repos\\POSWeb\\Negocios\\Negocios.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\R\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\R\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -36,7 +36,7 @@
                     </select>
                     <span asp-validation-for="TipoVenta" class="text-danger"></span>
                 </div>
-                     
+
                 <div class="form-group">
                     <label>Sucursal Nombre (Asignada al Empleado):</label>
                     <input readonly asp-for="TotalVenta" id="selectSucursal" class="form-control" placeholder="">
@@ -63,6 +63,7 @@
                                 <tr>
                                     <th>Folio</th>
                                     <th>Nombre</th>
+                                    <th>Descripcion </th>
                                     <th>Precio Unitario</th>
                                     <th>Cantidad</th>
                                     <th>Retención</th>
@@ -103,7 +104,7 @@
                             <input type="text" class="form-control form-control-sm" id="total" readonly>
                         </div>
                     </div>
-                </div>                
+                </div>
 
                 <div class=" card-footer text-center">
                     <label></label>
@@ -146,6 +147,7 @@
                 columns: [
                     { data: 'Folio' },
                     { data: 'Nombre' },
+                    { data: 'Descripcion' },
                     { data: 'PrecioUnitario' },
                     {
                         data: 'Cantidad',
@@ -155,10 +157,14 @@
                                 // Mostrar un campo numérico y un botón para ajustar la cantidad
                                 return '<div class="input-group">' +
                                     '<input type="number" class="form-control" value="' + data + '" />' +
-                                    '<div class="input-group-append">' +
-                                    '<button class="btn btn-outline-secondary increment" type="button">+</button>' +
-                                    '<button class="btn btn-outline-secondary decrement" type="button">-</button>' +
-                                    '</div>' +
+                                    // '<div class="input-group-append">' +
+                                    // '<button class="btn btn-outline-secondary increment" type="button">+</button>' +
+                                    // '<button class="btn btn-outline-secondary decrement" type="button">-</button>' +
+                                    // '</div>' +
+                                    // '<div class="input-group-append">' +
+                                    // '<button class="btn btn-outline-secondary increment" type="button">+</button>' +
+                                    // '<button class="btn btn-outline-secondary decrement" type="button">-</button>' +
+                                    // '</div>' +
                                     '</div>';
                             } else {
                                 // En otras situaciones, devolver solo el valor de la cantidad
@@ -182,178 +188,217 @@
                 ]
             });
 
-            // Manejar el evento clic del botón de incremento
-            $('#example').on('click', '.increment', function () {
-                var cell = $(this).closest('td');
-                var input = cell.find('input');
-                var currentValue = parseInt(input.val(), 10);
-                input.val(currentValue + 1).trigger('change'); // Incrementar la cantidad y activar el evento 'change'
-            });
-
-            // Manejar el evento clic del botón de decremento
-            $('#example').on('click', '.decrement', function () {
-                var cell = $(this).closest('td');
-                var input = cell.find('input');
-                var currentValue = parseInt(input.val(), 10);
-                if (currentValue > 0) {
-                    input.val(currentValue - 1).trigger('change'); // Decrementar la cantidad y activar el evento 'change'
-                }
-            });
-
-            // Manejar el cambio en el campo numérico de cantidad
-            $('#example').on('change', 'input[type="number"]', function () {
-                var cell = $(this).closest('td');
-                var rowIndex = dataTable.cell(cell).index().row;
-                var newData = dataTable.row(rowIndex).data();
-                newData.Cantidad = parseInt($(this).val(), 10);
-                dataTable.row(rowIndex).data(newData).draw();
-            });
 
 
             // Manejar el evento clic del botón "Agregar Producto"
             $("#btnAgregarProducto").click(function () {
                 // Obtener el valor del campo oculto (ID del producto)
 
+
                 var idProducto = $("#servicioProductoHidden").val();
-
-                // Obtener los valores del producto seleccionado
-                var folio = "TEst"
-                var nombreProducto = $('#servicioProducto').val();
-                var idProducto = $('#servicioProductoHidden').val();
-                var precioUnitario = 0; 
-                var cantidad = 1; 
-                var retencion = 0; 
-                var traslado = 0; 
-                var subtotal = 0; 
-                var total = 0; 
-
-                // Crear un objeto con los datos del nuevo elemento a agregar al DataTable
-                var newData = {
-                    Folio: nombreProducto,
-                    Nombre: nombreProducto,
-                    PrecioUnitario: precioUnitario,
-                    Cantidad: cantidad,
-                    Retencion: retencion,
-                    Traslado: traslado,
-                    Subtotal: cantidad * precioUnitario,
-                    Total: total
-                };
-
-                // Agregar la nueva fila al DataTable
-                var table = $('#example').DataTable();
-                table.row.add(newData).draw(); // Agregar la fila y volver a dibujar el DataTable
-
-                // Limpiar los campos de entrada después de agregar el producto
-                $('#servicioProducto').val('');
-                $('#servicioProductoHidden').val('');
                 //     // Hacer algo con el ID del producto, por ejemplo, enviarlo a través de AJAX
-                //     if (idProducto) {
-                //         // Realizar una solicitud AJAX para agregar el producto con el ID
-                //         $.ajax({
-                //             url: 'http://localhost:5014/agregarProducto',
-                //             method: 'POST',
-                //             data: {
-                //                 idProducto: idProducto
-                //                 // Puedes incluir más datos del formulario si es necesario
-                //             },
-                //             success: function (response) {
-                //                 // Manejar la respuesta del servidor si es necesario
-                //                 console.log("Producto agregado exitosamente:", response);
-                //                 // Puedes realizar más acciones después de agregar el producto
-                //             },
-                //             error: function (xhr, status, error) {
-                //                 // Manejar errores de la solicitud AJAX si ocurren
-                //                 console.error("Error al agregar producto:", error);
-                //             }
-                //         });
-                //     } else {
-                //         console.log("No se ha seleccionado ningún producto.");
-                //         // Puedes mostrar un mensaje de error o realizar otras acciones si no se seleccionó ningún producto
-                //     }
-                // });
-            });
+                if (idProducto) {
+                    // Realizar una solicitud AJAX para agregar el producto con el ID
+                    $.ajax({
+                        // url: 'http://localhost:5014/agregarProductoServicioVenta',
+                        url: `http://localhost:5014/Producto/getProductoById?IdProducto=${idProducto}`,
+                        method: 'GET',
+                        data: {
+                            idProducto: idProducto
+                            // Puedes incluir más datos del formulario si es necesario
+                        },
+                        success: function (response) {
+                            // Manejar la respuesta del servidor si es necesario
+                            console.log("Producto agregado exitosamente:", response);
+                            // Puedes realizar más acciones después de agregar el producto
+                            // Obtener los valores del producto seleccionado
+                            var idProducto = $('#servicioProductoHidden').val();
+                            var folio = response.folioProducto;
+                            var nombreProducto = response.nombreProducto;
+                            var descProd = response.descripcionProducto;
+                            var precioUnitario = 0;
+                            var cantidad = 1;
+                            var retencion = response.retencion;
+                            var traslado = response.traslado;
+                            var subtotal = 0;
+                            var total = 0;
 
-            $('#example').on('click', 'tr', function () {
-                var jsData = dataTable.row(this).data();
-                $('#primary').modal('show');
-                $('#primary').text(jsData[0]); //[0] will display 1st column of your table
-                $.get(jsData.url, function (data, status) {
-                    /*         document.getElementById("imagepreview").src = data.sprites.back_default;*/
-                    $("#nombre").text(data.name);
-                    $("#peso").text(data.weight);
-                    $("#base_experience").text(data.base_experience);
+                            // Crear un objeto con los datos del nuevo elemento a agregar al DataTable
+                            var newData = {
+                                idProducto: idProducto,
+                                Folio: folio,
+                                Nombre: nombreProducto,
+                                Descripcion: descProd,
+                                PrecioUnitario: precioUnitario,
+                                Cantidad: cantidad,
+                                Retencion: retencion,
+                                Traslado: traslado,
+                                Subtotal: cantidad * precioUnitario,
+                                Total: total
+                            };
 
-                    $("#imgPokemones").html("");
-                    $.each(data.sprites, function (key, value) {
+                            // Agregar la nueva fila al DataTable
+                            var table = $('#example').DataTable();
+                            table.row.add(newData).draw(); // Agregar la fila y volver a dibujar el DataTable
 
-                        if (value != null && key != "versions" && key != "other") {
-                            console.log(key + ": " + value);
-                            var img = document.createElement("img");
-                            img.src = value;
-                            var src = document.getElementById("imgPokemones");
-                            src.appendChild(img);
+                            // Limpiar los campos de entrada después de agregar el producto
+                            $('#servicioProducto').val('');
+                            $('#servicioProductoHidden').val('');
+                        },
+                        error: function (xhr, status, error) {
+                            // Manejar errores de la solicitud AJAX si ocurren
+                            console.error("Error al agregar producto:", error);
                         }
                     });
-                });
-            })
-            //termina parte peticion
-
-
-            // Función genérica para cargar opciones en un selector
-            function cargarOpciones(url, selector, optionText) {
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function (data) {
-                        // Limpiar opciones actuales del selector
-                        $(selector).empty();
-
-                        // Agregar opción inicial
-                        $(selector).append($('<option>').text('-- Seleccione ' + optionText + ' --').attr('value', ''));
+                } else {
+                    console.log("No se ha seleccionado ningún producto.");
+                    // Puedes mostrar un mensaje de error o realizar otras acciones si no se seleccionó ningún producto
+                }
+            });
+        });
 
 
 
-                        if (selector == '#selectSucursal') {
+        // Función genérica para cargar opciones en un selector
+        function cargarOpciones(url, selector, optionText) {
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Limpiar opciones actuales del selector
+                    $(selector).empty();
 
-                            $(selector).val(data.nombreSucursal);
+                    // Agregar opción inicial
+                    $(selector).append($('<option>').text('-- Seleccione ' + optionText + ' --').attr('value', ''));
 
 
-                        } else if (selector == '#selectEmpleado') {
-                            $.each(data, function (index, item) {
-                                $(selector).append($('<option>').text(item.usuarioSistema).attr('value', item.idEmpleado));
-                            });
-                        } else if (selector == '#selectCliente') {
-                            $.each(data, function (index, item) {
-                                $(selector).append($('<option>').text(item.rfcCliente).attr('value', item.idCliente));
-                            });
-                        }
-                    },
-                    error: function () {
-                        console.error('Error al cargar ' + optionText.toLowerCase() + '.');
+
+                    if (selector == '#selectSucursal') {
+
+                        $(selector).val(data.nombreSucursal);
+
+
+                    } else if (selector == '#selectEmpleado') {
+                        $.each(data, function (index, item) {
+                            $(selector).append($('<option>').text(item.usuarioSistema).attr('value', item.idEmpleado));
+                        });
+                    } else if (selector == '#selectCliente') {
+                        $.each(data, function (index, item) {
+                            $(selector).append($('<option>').text(item.rfcCliente).attr('value', item.idCliente));
+                        });
+                    }
+                },
+                error: function () {
+                    console.error('Error al cargar ' + optionText.toLowerCase() + '.');
+                }
+            });
+        }
+
+        $('#selectEmpleado').change(function () {
+            //Obtener el ID del Empleado
+            let idEmpleadoSeleccionado = this.value;
+
+            // Construir la URL para obtener las sucursales por empleado
+            let url = `http://localhost:5014/Empleado/getEmpleadoById?IdEmpleado=${idEmpleadoSeleccionado}`;
+
+            // Cargar opciones de sucursales relacionadas con el empleado seleccionado
+            cargarOpciones(url, '#selectSucursal', 'una Sucursal');
+
+
+        });
+
+        // Cargar empleados (tipo Asesor de Venta)
+        cargarOpciones('http://localhost:5014/Empleados', '#selectEmpleado', 'Empleado');
+
+        // Cargar clientes
+        cargarOpciones('http://localhost:5014/Clientes', '#selectCliente', 'Cliente');
+
+
+
+
+        $('#example').on('click', 'tr', function () {
+            var jsData = dataTable.row(this).data();
+            $('#primary').modal('show');
+            $('#primary').text(jsData[0]); //[0] will display 1st column of your table
+            $.get(jsData.url, function (data, status) {
+                /*         document.getElementById("imagepreview").src = data.sprites.back_default;*/
+                $("#nombre").text(data.name);
+                $("#peso").text(data.weight);
+                $("#base_experience").text(data.base_experience);
+
+                $("#imgPokemones").html("");
+                $.each(data.sprites, function (key, value) {
+
+                    if (value != null && key != "versions" && key != "other") {
+                        console.log(key + ": " + value);
+                        var img = document.createElement("img");
+                        img.src = value;
+                        var src = document.getElementById("imgPokemones");
+                        src.appendChild(img);
                     }
                 });
-            }
-
-            $('#selectEmpleado').change(function () {
-                //Obtener el ID del Empleado
-                let idEmpleadoSeleccionado = this.value;
-
-                // Construir la URL para obtener las sucursales por empleado
-                let url = `http://localhost:5014/Empleado/getEmpleadoById?IdEmpleado=${idEmpleadoSeleccionado}`;
-
-                // Cargar opciones de sucursales relacionadas con el empleado seleccionado
-                cargarOpciones(url, '#selectSucursal', 'una Sucursal');
-
-
             });
+        })
+        //termina parte peticion
 
-            // Cargar empleados (tipo Asesor de Venta)
-            cargarOpciones('http://localhost:5014/Empleados', '#selectEmpleado', 'Empleado');
 
-            // Cargar clientes
-            cargarOpciones('http://localhost:5014/Clientes', '#selectCliente', 'Cliente');
+        // Función genérica para cargar opciones en un selector
+        function cargarOpciones(url, selector, optionText) {
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Limpiar opciones actuales del selector
+                    $(selector).empty();
+
+                    // Agregar opción inicial
+                    $(selector).append($('<option>').text('-- Seleccione ' + optionText + ' --').attr('value', ''));
+
+
+
+                    if (selector == '#selectSucursal') {
+
+                        $(selector).val(data.nombreSucursal);
+
+
+                    } else if (selector == '#selectEmpleado') {
+                        $.each(data, function (index, item) {
+                            $(selector).append($('<option>').text(item.usuarioSistema).attr('value', item.idEmpleado));
+                        });
+                    } else if (selector == '#selectCliente') {
+                        $.each(data, function (index, item) {
+                            $(selector).append($('<option>').text(item.rfcCliente).attr('value', item.idCliente));
+                        });
+                    }
+                },
+                error: function () {
+                    console.error('Error al cargar ' + optionText.toLowerCase() + '.');
+                }
+            });
+        }
+
+        $('#selectEmpleado').change(function () {
+            //Obtener el ID del Empleado
+            let idEmpleadoSeleccionado = this.value;
+
+            // Construir la URL para obtener las sucursales por empleado
+            let url = `http://localhost:5014/Empleado/getEmpleadoById?IdEmpleado=${idEmpleadoSeleccionado}`;
+
+            // Cargar opciones de sucursales relacionadas con el empleado seleccionado
+            cargarOpciones(url, '#selectSucursal', 'una Sucursal');
+
+
         });
+
+        // Cargar empleados (tipo Asesor de Venta)
+        cargarOpciones('http://localhost:5014/Empleados', '#selectEmpleado', 'Empleado');
+
+        // Cargar clientes
+        cargarOpciones('http://localhost:5014/Clientes', '#selectCliente', 'Cliente');
+
+
 
 
         // Configurar Autocompletado

@@ -7022,11 +7022,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\R\\source\\repos\\PosWeb\\Negocios\\Negocios.csproj",
+      "projectUniqueName": "C:\\Users\\R\\source\\repos\\POSWeb\\Negocios\\Negocios.csproj",
       "projectName": "Negocios",
-      "projectPath": "C:\\Users\\R\\source\\repos\\PosWeb\\Negocios\\Negocios.csproj",
+      "projectPath": "C:\\Users\\R\\source\\repos\\POSWeb\\Negocios\\Negocios.csproj",
       "packagesPath": "C:\\Users\\R\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\R\\source\\repos\\PosWeb\\Negocios\\obj\\",
+      "outputPath": "C:\\Users\\R\\source\\repos\\POSWeb\\Negocios\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\R\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7043,8 +7043,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\R\\source\\repos\\PosWeb\\Datos\\Datos.csproj": {
-              "projectPath": "C:\\Users\\R\\source\\repos\\PosWeb\\Datos\\Datos.csproj"
+            "C:\\Users\\R\\source\\repos\\POSWeb\\Datos\\Datos.csproj": {
+              "projectPath": "C:\\Users\\R\\source\\repos\\POSWeb\\Datos\\Datos.csproj"
             }
           }
         }

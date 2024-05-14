@@ -13,3 +13,4 @@ C:\Users\R\source\repos\PosWeb\Negocios\obj\Debug\net8.0\Negocios.dll
 C:\Users\R\source\repos\PosWeb\Negocios\obj\Debug\net8.0\refint\Negocios.dll
 C:\Users\R\source\repos\PosWeb\Negocios\obj\Debug\net8.0\Negocios.pdb
 C:\Users\R\source\repos\PosWeb\Negocios\obj\Debug\net8.0\ref\Negocios.dll
+C:\Users\R\source\repos\POSWeb\Negocios\obj\Debug\net8.0\Negocios.sourcelink.json
