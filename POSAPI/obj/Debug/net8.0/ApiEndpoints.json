@@ -322,6 +322,80 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebContratos.Controllers.ProductoSucursalController",
+    "Method": "GetProductoSucursal",
+    "RelativePath": "ProductoSucursal",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.ProductoSucursalController",
+    "Method": "ActualizarProductoSucursal",
+    "RelativePath": "ProductoSucursal/actualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ProductoSucursal",
+        "Type": "Datos.Models.TblProductoSucursal",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.ProductoSucursalController",
+    "Method": "EliminarProductoSucursal",
+    "RelativePath": "ProductoSucursal/eliminar",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdProductoSucursal",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.ProductoSucursalController",
+    "Method": "GetProductoSucursalById",
+    "RelativePath": "ProductoSucursal/getProductoSucursalById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdProductoSucursal",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebContratos.Controllers.ProductoSucursalController",
+    "Method": "AgregarProductoSucursal",
+    "RelativePath": "ProductoSucursal/guardar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ProductoSucursal",
+        "Type": "Datos.Models.TblProductoSucursal",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebContratos.Controllers.SucursalController",
     "Method": "GetSucursalById",
     "RelativePath": "Sucursal/getSucursalById",

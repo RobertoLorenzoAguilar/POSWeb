@@ -216,7 +216,7 @@
                             var folio = response.folioProducto;
                             var nombreProducto = response.nombreProducto;
                             var descProd = response.descripcionProducto;
-                            var precioUnitario = 0;
+                            var precioUnitario = response.tblProductoSucursals[0].precio;
                             var cantidad = 1;
                             var retencion = response.retencion;
                             var traslado = response.traslado;

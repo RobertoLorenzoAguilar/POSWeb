@@ -100,6 +100,7 @@ namespace Negocios.Clases
             try
             {
                 TblProducto Producto = db.TblProductos
+                    .Include(y=> y.TblProductoSucursals)
                                        .FirstOrDefault(x => x.IdProducto == IdProducto && x.Eliminado == false);
 
                 if (Producto != null)

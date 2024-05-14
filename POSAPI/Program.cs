@@ -28,11 +28,11 @@ builder.Services.AddScoped<IVentaDetalle, LogicaVentaDetalle>();
 
 
 ////evita las referencias ciclicas el codigo de abajo
-//builder.Services.AddControllersWithViews().AddJsonOptions(options =>
-//{
-//    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-//    // Otras opciones...
-//});
+builder.Services.AddControllersWithViews().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    // Otras opciones...
+});
 
 //politicas de dominio
 builder.Services.AddCors(options =>
