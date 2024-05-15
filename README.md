@@ -9,7 +9,7 @@ Proyecto Web, tipo API.
 
 # Se configura un proyecto tipo ASP.Net Web API con Swagger habilitado
 Es una herramienta de software de código abierto para diseñar, construir, documentar, y utilizar servicios web RESTful.
-Cuando se encuentra en modo desarrollo en program.cs se peuden visualizar los end-points habilitados.
+Cuando se encuentra en modo desarrollo en program.cs se pueden visualizar los end-points habilitados.
 <img src="Images/api.PNG" alt="Logo">
 
 ```csharp
