@@ -32,3 +32,8 @@ if (app.Environment.IsDevelopment())
 6) agregar la creación de tablas query
 7) agregar el campo de teléfonos tipo multivalorado funcionalidad a sucursal
 9) incorporar CRUD para ofertas temporales y logica
+
+# NICE TODO:
+1) Agreger pruebas unitarias
+2) Agregar pruebas de regresión
+3) Incorporar un Login no simulado
