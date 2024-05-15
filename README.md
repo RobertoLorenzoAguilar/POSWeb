@@ -7,6 +7,21 @@ Proyecto Web, tipo API.
 
  <img src="Images/e-r-1.PNG" alt="Logo">
 
+# Se configura un proyecto tipo ASP.Net Web API con Swagger habilitado
+Es una herramienta de software de código abierto para diseñar, construir, documentar, y utilizar servicios web RESTful.
+Cuando se encuentra en modo desarrollo en program.cs se pueden visualizar los end-points habilitados.
+<img src="Images/api.PNG" alt="Logo">
+
+```csharp
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+```
+
+
+
 # TODO:
 1) Acomodar los script en carpetas separadas
 2) crear el modelo relacional
