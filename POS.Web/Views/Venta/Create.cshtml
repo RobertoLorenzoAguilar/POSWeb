@@ -138,7 +138,7 @@
     <script>
         $(document).ready(function () {
 
-         
+
             var dataTable = $('#tblDetalleVenta').DataTable({
                 columns: [
                     { data: 'Folio' },
@@ -152,7 +152,7 @@
                             if (type === 'display') {
                                 // Mostrar un campo numérico y un botón para ajustar la cantidad
                                 return '<div class="input-group">' +
-                                    '<input type="number" id="txtCantidad" class="form-control" value="' + data + '" />' +                                   
+                                    '<input type="number" id="txtCantidad" class="form-control" value="' + data + '" />' +
                                     '</div>';
                             } else {
                                 // En otras situaciones, devolver solo el valor de la cantidad
@@ -194,7 +194,28 @@
                         var datosFila = dataTable.row(indiceFila).data();
                         datosFila.Cantidad = cantidadParseada;
                         datosFila.Subtotal = datosFila.PrecioUnitario * cantidadParseada;
-                        datosFila.Total = "Subtotal mas el impuesto";  //retencion o traslado
+
+
+                        
+
+
+                        // calculo retencion tralsado
+                        var totalCalculado =0;
+                        //calculo fila total
+                        if (datosFila.Retencion != "N/A") {
+                            var impuesto = (datosFila.PrecioUnitario * datosFila.Cantidad) * .30;
+                            totalCalculado = impuesto + (datosFila.PrecioUnitario * datosFila.Cantidad); //isr traslado
+                        } else if (datosFila.Traslasado != "N/A") {
+                            var impuesto = (datosFila.PrecioUnitario * datosFila.Cantidad) * .16;
+                            totalCalculado = impuesto + (datosFila.PrecioUnitario * datosFila.Cantidad); //isr traslado
+                        }
+
+
+
+
+                        datosFila.Total = totalCalculado;  //retencion o traslado
+
+
                         dataTable.row(indiceFila).data(datosFila).invalidate();
                     } else {
                         alert("Por favor, introduce un número válido.");
@@ -240,13 +261,13 @@
                             var subtotal = 0;
                             var total = 0;
 
-                           
+
 
 
 
                             var totalCalculado = 0;
                             //calculo fila total
-                            if (retencion == true){
+                            if (retencion == true) {
                                 totalCalculado = (precioUnitario * .30) + precioUnitario; //isr rentencion
                                 traslado = "N/A";
                                 retencion = "30%";
@@ -254,7 +275,7 @@
                                 totalCalculado = precioUnitario * .16 + precioUnitario; //isr traslado
                                 retencion = "N/A";
                                 traslado = "16%";
-                            }                                                        
+                            }
 
                             // Crear un objeto con los datos del nuevo elemento a agregar al DataTable
                             var newData = {
@@ -403,8 +424,8 @@
                     } else if (selector == '#selectCliente') {
                         $.each(data, function (index, item) {
                             $(selector).append($('<option>').text(item.rfcCliente)
-                            .attr('value', item.idCliente)
-                            .attr('data-descuento', item.descuento));
+                                .attr('value', item.idCliente)
+                                .attr('data-descuento', item.descuento));
                         });
                     }
                 },
@@ -484,7 +505,7 @@
 
 
         // });
-        
-        
+
+
     </script>
 }
