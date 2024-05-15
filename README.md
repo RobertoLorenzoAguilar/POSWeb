@@ -20,10 +20,14 @@ if (app.Environment.IsDevelopment())
 }
 ```
 
-
+# Generando Venta
+<img src="Images/venta.PNG" alt="Logo">
 
 # TODO:
 1) Acomodar los script en carpetas separadas
 2) crear el modelo relacional
 3) checar la normalización de la base de datos
 4) corregir bug del autocompletado de los productos o servicios
+5) corregir porque no muestra la sucursal del empleado en el select
+6) agregar la creación de tablas query
+7) agregar el campo de teléfonos tipo multivalorado funcionalidad a sucursal 
