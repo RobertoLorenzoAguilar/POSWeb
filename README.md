@@ -24,15 +24,17 @@ if (app.Environment.IsDevelopment())
 <img src="Images/venta.PNG" alt="Logo">
 
 # TODO:
-1) Acomodar los script en carpetas separadas
-2) Crear el modelo relacional
-3) Checar la normalización de la base de datos
-4) Corregir bug del autocompletado de los productos o servicios
+1) Acomodar los script en carpetas separadas.
+2) Crear el modelo relacional.
+3) Checar la normalización de la base de datos.
+4) Corregir bug del autocompletado de los productos o servicios.
 5) Corregir porque no muestra la sucursal del empleado en el select
 6) Agregar la creación de tablas query
-7) Agregar el campo de teléfonos tipo multivalorado funcionalidad a sucursal
-9) Incorporar CRUD para ofertas temporales y logica
-10) Agregar campo precio al momento de la venta
+7) Agregar el campo de teléfonos tipo multivalorado funcionalidad a sucursal.
+9) Incorporar CRUD para ofertas temporales y lógicas.
+10) Agregar el campo precio al momento de la venta.
+11) Mostrar errores desde el back-end API.
+12) Validaciones de Flujo en el front-end. Ejemplo: antes de agregar artículos, traer el descuento del cliente.
 
 # NICE TODO:
 1) Agreger pruebas unitarias
