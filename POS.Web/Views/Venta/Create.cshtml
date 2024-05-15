@@ -39,8 +39,8 @@
 
                 <div class="form-group">
                     <label>Sucursal Nombre (Asignada al Empleado):</label>
-                    <input readonly asp-for="IdSucursal" id="selectSucursal" class="form-control" placeholder="">
-                    <span asp-validation-for="IdSucursal" id="selectSucursal" class="text-danger"></span>
+                    <input readonly  id="selectSucursal" class="form-control" placeholder="">
+                    @* <span asp-validation-for="IdSucursal" id="selectSucursal" class="text-danger"></span> *@
                 </div>
 
                 @* detalle producto *@
@@ -145,21 +145,24 @@
                 // Obtener todas las filas de la tabla (excluyendo la fila de encabezado)
                 var filas = tabla.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
 
+                let subTotalPagoVenta = 0; //total por articulo
                 let TotalPagoVenta = 0; //total por articulo
 
                 // Iterar sobre cada fila de la tabla
                 Array.from(filas).forEach(function (fila) {
                     var celdas = fila.getElementsByTagName('td');
                     const cantidadElemento = celdas[4].querySelector('div.input-group .txtCantidad').value;
-                    var total = parseFloat(celdas[3].textContent) * cantidadElemento;
-                    // var total = parseFloat(celdas[8].textContent) * cantidad; // Columna de total
+                    // var total = parseFloat(celdas[3].textContent) * cantidadElemento;
+                    var subtotal = parseFloat(celdas[3].textContent) * cantidadElemento; // Columna de total
+                    subTotalPagoVenta = subTotalPagoVenta + subtotal;
+                    var total = parseFloat(celdas[8].textContent); // Columna de total
                     TotalPagoVenta = TotalPagoVenta + total;
                 });
 
-
-                var descuentos = $("#descuentos").val();
-                $("#subtotal").val(TotalPagoVenta);
-                $("#totalVenta").val(TotalPagoVenta - descuentos);
+                var descuento = $("#descuentos").val();
+                $("#subtotal").val(subTotalPagoVenta);
+                // $("#totalVenta").val(TotalPagoVenta - descuentos);
+                $("#totalVenta").val(TotalPagoVenta - descuento);
 
             }
 
@@ -214,7 +217,6 @@
 
             // Manejar el cambio de cantidad
             $(document).on('change', '#txtCantidad', function () {
-
                 var cantidad = $(this).val();
                 if (!isNaN(cantidad) && cantidad !== '') {
                     var cantidadParseada = parseInt(cantidad, 10);
@@ -224,11 +226,6 @@
                         var datosFila = dataTable.row(indiceFila).data();
                         datosFila.Cantidad = cantidadParseada;
                         datosFila.Subtotal = datosFila.PrecioUnitario * cantidadParseada;
-
-
-
-
-
                         // calculo retencion tralsado
                         var totalCalculado = 0;
                         //calculo fila total
@@ -239,14 +236,9 @@
                             var impuesto = (datosFila.PrecioUnitario * datosFila.Cantidad) * .16;
                             totalCalculado = impuesto + (datosFila.PrecioUnitario * datosFila.Cantidad); //isr traslado
                         }
-
-
-
-
                         datosFila.Total = totalCalculado;  //retencion o traslado
-
-
                         dataTable.row(indiceFila).data(datosFila).invalidate();
+                        calcularSumaTotal(); //recalcular
                     } else {
                         alert("Por favor, introduce un número válido.");
                     }
@@ -254,9 +246,6 @@
                     alert("Por favor, introduce un número válido.");
                 }
             });
-
-
-
 
             // Manejar el evento clic del botón "Agregar Producto"
             $("#btnAgregarProducto").click(function () {
