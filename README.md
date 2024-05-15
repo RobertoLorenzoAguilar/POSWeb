@@ -3,6 +3,9 @@ Proyecto punto de venta
 
 Proyecto Web, tipo API.
 
+# Bosquejo CRUD Cliente del diseño Front-End "Tentativo"
+<img src="Images/bosquejos_crud_cliente.PNG" alt="Logo">
+
 # Diagrama entidad relación
 
  <img src="Images/e-r-1.PNG" alt="Logo">
