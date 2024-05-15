@@ -39,8 +39,8 @@
 
                 <div class="form-group">
                     <label>Sucursal Nombre (Asignada al Empleado):</label>
-                    <input readonly asp-for="TotalVenta" id="selectSucursal" class="form-control" placeholder="">
-                    <span asp-validation-for="TotalVenta" id="selectSucursal" class="text-danger"></span>
+                    <input readonly asp-for="IdSucursal" id="selectSucursal" class="form-control" placeholder="">
+                    <span asp-validation-for="IdSucursal" id="selectSucursal" class="text-danger"></span>
                 </div>
 
                 @* detalle producto *@
@@ -52,7 +52,6 @@
                             <button type="button" id="btnAgregarProducto" class="btn btn-primary">Agregar</button>
                         </div>
                     </div>
-                    <span asp-validation-for="TotalVenta" id="selectSucursal" class="text-danger"></span>
                 </div>
 
                 <div class="container">
@@ -69,7 +68,7 @@
                                     <th>Retención</th>
                                     <th>Traslado</th>
                                     <th>Subtotal</th>
-                                    <th>Total</th>
+                                    <th class="Total">Total</th>
                                     <th>Eliminar</th>
                                 </tr>
                             </thead>
@@ -92,16 +91,16 @@
                             <input type="text" class="form-control form-control-sm" id="descuentos" readonly>
                         </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-6 offset-md-6 text-right">
-                            <label for="impuestos">Impuestos:</label>
-                            <input type="text" class="form-control form-control-sm" id="impuestos" readonly>
-                        </div>
+                    @* <div class="row mt-3">
+                    <div class="col-6 offset-md-6 text-right">
+                    <label for="impuestos">Impuestos:</label>
+                    <input type="text" class="form-control form-control-sm" readonly>
                     </div>
+                    </div> *@
                     <div class="row mt-3">
                         <div class="col-6 offset-md-6 text-right">
                             <label for="total">Total:</label>
-                            <input type="text" class="form-control form-control-sm" id="total" readonly>
+                            <input type="text" class="form-control form-control-sm" id="totalVenta" readonly>
                         </div>
                     </div>
                 </div>
@@ -139,6 +138,36 @@
         $(document).ready(function () {
 
 
+            // Función para calcular la suma de la columna "Total"
+            function calcularSumaTotal() {
+                var tabla = document.getElementById('tblDetalleVenta');
+
+                // Obtener todas las filas de la tabla (excluyendo la fila de encabezado)
+                var filas = tabla.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+                let TotalPagoVenta = 0; //total por articulo
+
+                // Iterar sobre cada fila de la tabla
+                Array.from(filas).forEach(function (fila) {
+                    var celdas = fila.getElementsByTagName('td');
+                    var cantidad = celdas[4].getElementsByTagName('td .txtCantidad');
+                    var total = parseFloat(celdas[8].textContent) * cantidad; // Columna de total
+                    TotalPagoVenta = TotalPagoVenta + total;
+                });
+
+
+                var descuentos = $("#descuentos").val();
+                $("#subtotal").val(TotalPagoVenta);
+                $("#totalVenta").val(TotalPagoVenta - descuentos);
+
+            }
+
+
+            $(document).on('change', '.txtCantidad', function () {
+                calcularSumaTotal();
+            });
+
+
             var dataTable = $('#tblDetalleVenta').DataTable({
                 columns: [
                     { data: 'Folio' },
@@ -152,7 +181,7 @@
                             if (type === 'display') {
                                 // Mostrar un campo numérico y un botón para ajustar la cantidad
                                 return '<div class="input-group">' +
-                                    '<input type="number" id="txtCantidad" class="form-control" value="' + data + '" />' +
+                                    '<input type="number" id="txtCantidad" class="form-control txtCantidad" value="' + data + '" />' +
                                     '</div>';
                             } else {
                                 // En otras situaciones, devolver solo el valor de la cantidad
@@ -196,11 +225,11 @@
                         datosFila.Subtotal = datosFila.PrecioUnitario * cantidadParseada;
 
 
-                        
+
 
 
                         // calculo retencion tralsado
-                        var totalCalculado =0;
+                        var totalCalculado = 0;
                         //calculo fila total
                         if (datosFila.Retencion != "N/A") {
                             var impuesto = (datosFila.PrecioUnitario * datosFila.Cantidad) * .30;
@@ -298,11 +327,14 @@
                             // Limpiar los campos de entrada después de agregar el producto
                             $('#servicioProducto').val('');
                             $('#servicioProductoHidden').val('');
+                            calcularSumaTotal(); //calcular total
                         },
                         error: function (xhr, status, error) {
                             // Manejar errores de la solicitud AJAX si ocurren
                             console.error("Error al agregar producto:", error);
                         }
+
+
                     });
                 } else {
                     console.log("No se ha seleccionado ningún producto.");

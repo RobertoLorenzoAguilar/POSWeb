@@ -38,8 +38,7 @@
               "RelativeToolTip": "POSAPI\\Program.cs",
               "ViewState": "AQIAACoAAAAAAAAAAAAAADQAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T01:33:18.767Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T01:33:18.767Z"
             },
             {
               "$type": "Document",
@@ -49,7 +48,7 @@
               "RelativeDocumentMoniker": "POS.Web\\Views\\Venta\\Create.cshtml",
               "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Views\\Venta\\Create.cshtml",
               "RelativeToolTip": "POS.Web\\Views\\Venta\\Create.cshtml",
-              "ViewState": "AQIAALsAAAAAAAAAAADwv9EAAAAcAAAA",
+              "ViewState": "AQIAAIoAAAAAAAAAAAAmwJgAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-14T21:21:40.737Z",
               "EditorCaption": ""
@@ -76,8 +75,7 @@
               "RelativeToolTip": "POS.Web\\Controllers\\EmpleadoController.cs",
               "ViewState": "AQIAABEAAAAAAAAAAAAMwB8AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T21:09:20.082Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T21:09:20.082Z"
             }
           ]
         }
