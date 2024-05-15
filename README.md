@@ -30,4 +30,5 @@ if (app.Environment.IsDevelopment())
 4) corregir bug del autocompletado de los productos o servicios
 5) corregir porque no muestra la sucursal del empleado en el select
 6) agregar la creación de tablas query
-7) agregar el campo de teléfonos tipo multivalorado funcionalidad a sucursal 
+7) agregar el campo de teléfonos tipo multivalorado funcionalidad a sucursal
+9) incorporar CRUD para ofertas temporales y logica
