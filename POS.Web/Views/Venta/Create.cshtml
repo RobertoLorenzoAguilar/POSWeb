@@ -58,7 +58,7 @@
                 <div class="container">
                     <label></label>
                     <div class="row">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <table id="tblDetalleVenta" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Folio</th>
@@ -138,12 +138,8 @@
     <script>
         $(document).ready(function () {
 
-            // Manejar clic en el botón de eliminar
-            $('#example').on('click', '.eliminar', function () {
-                this.remove().draw(false); // Remover la fila y redibujar la tabla
-            });
-
-            var dataTable = $('#example').DataTable({
+         
+            var dataTable = $('#tblDetalleVenta').DataTable({
                 columns: [
                     { data: 'Folio' },
                     { data: 'Nombre' },
@@ -156,15 +152,7 @@
                             if (type === 'display') {
                                 // Mostrar un campo numérico y un botón para ajustar la cantidad
                                 return '<div class="input-group">' +
-                                    '<input type="number" class="form-control" value="' + data + '" />' +
-                                    // '<div class="input-group-append">' +
-                                    // '<button class="btn btn-outline-secondary increment" type="button">+</button>' +
-                                    // '<button class="btn btn-outline-secondary decrement" type="button">-</button>' +
-                                    // '</div>' +
-                                    // '<div class="input-group-append">' +
-                                    // '<button class="btn btn-outline-secondary increment" type="button">+</button>' +
-                                    // '<button class="btn btn-outline-secondary decrement" type="button">-</button>' +
-                                    // '</div>' +
+                                    '<input type="number" id="txtCantidad" class="form-control" value="' + data + '" />' +                                   
                                     '</div>';
                             } else {
                                 // En otras situaciones, devolver solo el valor de la cantidad
@@ -187,6 +175,35 @@
 
                 ]
             });
+
+            // Manejar clic en el botón de eliminar
+            $('#tblDetalleVenta').on('click', '.eliminar', function () {
+                this.remove().draw(false); // Remover la fila y redibujar la tabla
+            });
+
+
+            // Manejar el cambio de cantidad
+            $(document).on('change', '#txtCantidad', function () {
+
+                var cantidad = $(this).val();
+                if (!isNaN(cantidad) && cantidad !== '') {
+                    var cantidadParseada = parseInt(cantidad, 10);
+                    if (!isNaN(cantidadParseada)) {
+                        var $fila = $(this).closest('tr');
+                        var indiceFila = dataTable.row($fila).index();
+                        var datosFila = dataTable.row(indiceFila).data();
+                        datosFila.Cantidad = cantidadParseada;
+                        datosFila.Subtotal = datosFila.PrecioUnitario * cantidadParseada;
+                        datosFila.Total = "Subtotal mas el impuesto";  //retencion o traslado
+                        dataTable.row(indiceFila).data(datosFila).invalidate();
+                    } else {
+                        alert("Por favor, introduce un número válido.");
+                    }
+                } else {
+                    alert("Por favor, introduce un número válido.");
+                }
+            });
+
 
 
 
@@ -223,6 +240,22 @@
                             var subtotal = 0;
                             var total = 0;
 
+                           
+
+
+
+                            var totalCalculado = 0;
+                            //calculo fila total
+                            if (retencion == true){
+                                totalCalculado = (precioUnitario * .30) + precioUnitario; //isr rentencion
+                                traslado = "N/A";
+                                retencion = "30%";
+                            } else if (traslado == true) {
+                                totalCalculado = precioUnitario * .16 + precioUnitario; //isr traslado
+                                retencion = "N/A";
+                                traslado = "16%";
+                            }                                                        
+
                             // Crear un objeto con los datos del nuevo elemento a agregar al DataTable
                             var newData = {
                                 idProducto: idProducto,
@@ -234,11 +267,11 @@
                                 Retencion: retencion,
                                 Traslado: traslado,
                                 Subtotal: cantidad * precioUnitario,
-                                Total: total
+                                Total: totalCalculado
                             };
 
                             // Agregar la nueva fila al DataTable
-                            var table = $('#example').DataTable();
+                            var table = $('#tblDetalleVenta').DataTable();
                             table.row.add(newData).draw(); // Agregar la fila y volver a dibujar el DataTable
 
                             // Limpiar los campos de entrada después de agregar el producto
@@ -317,7 +350,7 @@
 
 
 
-        $('#example').on('click', 'tr', function () {
+        $('#tblDetalleVenta').on('click', 'tr', function () {
             var jsData = dataTable.row(this).data();
             $('#primary').modal('show');
             $('#primary').text(jsData[0]); //[0] will display 1st column of your table
@@ -369,7 +402,9 @@
                         });
                     } else if (selector == '#selectCliente') {
                         $.each(data, function (index, item) {
-                            $(selector).append($('<option>').text(item.rfcCliente).attr('value', item.idCliente));
+                            $(selector).append($('<option>').text(item.rfcCliente)
+                            .attr('value', item.idCliente)
+                            .attr('data-descuento', item.descuento));
                         });
                     }
                 },
@@ -391,6 +426,15 @@
 
 
         });
+        $('#selectCliente').change(function () {
+            // Obtener el descuento del cliente seleccionado
+            let selectedOption = $(this).find('option:selected');
+            let descuento = selectedOption.data('descuento');
+            $("#descuentos").val(descuento)
+            // console.log('Descuento seleccionado:', descuento);
+            // Aquí puedes agregar la lógica para usar el descuento seleccionado
+        });
+
 
         // Cargar empleados (tipo Asesor de Venta)
         cargarOpciones('http://localhost:5014/Empleados', '#selectEmpleado', 'Empleado');
@@ -439,7 +483,8 @@
         });
 
 
-
-
+        // });
+        
+        
     </script>
 }
