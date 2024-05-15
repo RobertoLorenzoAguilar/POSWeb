@@ -150,8 +150,9 @@
                 // Iterar sobre cada fila de la tabla
                 Array.from(filas).forEach(function (fila) {
                     var celdas = fila.getElementsByTagName('td');
-                    var cantidad = celdas[4].getElementsByTagName('td .txtCantidad');
-                    var total = parseFloat(celdas[8].textContent) * cantidad; // Columna de total
+                    const cantidadElemento = celdas[4].querySelector('div.input-group .txtCantidad').value;
+                    var total = parseFloat(celdas[3].textContent) * cantidadElemento;
+                    // var total = parseFloat(celdas[8].textContent) * cantidad; // Columna de total
                     TotalPagoVenta = TotalPagoVenta + total;
                 });
 
