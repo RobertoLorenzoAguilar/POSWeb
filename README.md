@@ -317,7 +317,7 @@ if (app.Environment.IsDevelopment())
 # Generando Venta
 <img src="Images/venta.PNG" alt="Logo">
 
-# TODO:
+# POR HACER:
 1) Acomodar los script en carpetas separadas.
 2) Crear el modelo relacional.
 3) Checar la normalización de la base de datos.
@@ -330,7 +330,7 @@ if (app.Environment.IsDevelopment())
 11) Mostrar errores desde el back-end API.
 12) Validaciones de Flujo en el front-end. Ejemplo: antes de agregar artículos, traer el descuento del cliente.
 
-# NICE TODO:
+# BUENO POR HACER:
 1) Agreger pruebas unitarias
 2) Agregar pruebas de regresión
 3) Incorporar un Login no simulado
