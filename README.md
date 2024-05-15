@@ -337,7 +337,7 @@ if (app.Environment.IsDevelopment())
 
    # Tecnologías
 1. [Balsamiq](https://balsamiq.com/): Herramienta para diseñar bosquejos.
-2. [SQL Server]:([https://www.jetbrains.com/datagrip/](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)): Entorno de desarrollo para bases de datos.
+2. [SQL Server](https://www.jetbrains.com/datagrip/](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16): Entorno de desarrollo para bases de datos.
 3. [Git](https://git-scm.com/): Sistema de control de versiones distribuido.
 4. [Microsoft Visual Studio](https://visualstudio.microsoft.com/es/downloads/): IDE .NET.
 5. [PostMan](https://marketplace.visualstudio.com/items?itemName=Postman.postman-for-vscode): Recomiendo esta extensión para Visual Studio Code para testear la API.
