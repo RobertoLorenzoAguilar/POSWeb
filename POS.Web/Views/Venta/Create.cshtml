@@ -39,8 +39,7 @@
 
                 <div class="form-group">
                     <label>Sucursal Nombre (Asignada al Empleado):</label>
-                    <input readonly  id="selectSucursal" class="form-control" placeholder="">
-                    @* <span asp-validation-for="IdSucursal" id="selectSucursal" class="text-danger"></span> *@
+                    <input readonly  id="selectSucursal" class="form-control" placeholder="">                    
                 </div>
 
                 @* detalle producto *@
@@ -91,12 +90,7 @@
                             <input type="text" class="form-control form-control-sm" id="descuentos" readonly>
                         </div>
                     </div>
-                    @* <div class="row mt-3">
-                    <div class="col-6 offset-md-6 text-right">
-                    <label for="impuestos">Impuestos:</label>
-                    <input type="text" class="form-control form-control-sm" readonly>
-                    </div>
-                    </div> *@
+                    
                     <div class="row mt-3">
                         <div class="col-6 offset-md-6 text-right">
                             <label for="total">Total:</label>
@@ -137,7 +131,6 @@
     <script>
         $(document).ready(function () {
 
-
             // Función para calcular la suma de la columna "Total"
             function calcularSumaTotal() {
                 var tabla = document.getElementById('tblDetalleVenta');
@@ -163,7 +156,6 @@
                 $("#subtotal").val(subTotalPagoVenta);
                 // $("#totalVenta").val(TotalPagoVenta - descuentos);
                 $("#totalVenta").val(TotalPagoVenta - descuento);
-
             }
 
 
@@ -209,10 +201,12 @@
                 ]
             });
 
-            // Manejar clic en el botón de eliminar
-            $('#tblDetalleVenta').on('click', '.eliminar', function () {
-                this.remove().draw(false); // Remover la fila y redibujar la tabla
-            });
+            // // Manejar clic en el botón de eliminar
+            // $('#tblDetalleVenta').on('click', '.eliminar', function () {
+            //     var table = $('#tblDetalleVenta').DataTable();
+            //     var row = $(this).closest('tr');
+            //     table.row(row).remove().draw(false); // Remover la fila y redibujar la tabla
+            // });
 
 
             // Manejar el cambio de cantidad
@@ -251,7 +245,6 @@
             $("#btnAgregarProducto").click(function () {
                 // Obtener el valor del campo oculto (ID del producto)
 
-
                 var idProducto = $("#servicioProductoHidden").val();
                 //     // Hacer algo con el ID del producto, por ejemplo, enviarlo a través de AJAX
                 if (idProducto) {
@@ -279,10 +272,6 @@
                             var traslado = response.traslado;
                             var subtotal = 0;
                             var total = 0;
-
-
-
-
 
                             var totalCalculado = 0;
                             //calculo fila total
@@ -323,8 +312,6 @@
                             // Manejar errores de la solicitud AJAX si ocurren
                             console.error("Error al agregar producto:", error);
                         }
-
-
                     });
                 } else {
                     console.log("No se ha seleccionado ningún producto.");
@@ -332,8 +319,6 @@
                 }
             });
         });
-
-
 
         // Función genérica para cargar opciones en un selector
         function cargarOpciones(url, selector, optionText) {
@@ -347,8 +332,6 @@
 
                     // Agregar opción inicial
                     $(selector).append($('<option>').text('-- Seleccione ' + optionText + ' --').attr('value', ''));
-
-
 
                     if (selector == '#selectSucursal') {
 
@@ -388,36 +371,8 @@
         cargarOpciones('http://localhost:5014/Empleados', '#selectEmpleado', 'Empleado');
 
         // Cargar clientes
-        cargarOpciones('http://localhost:5014/Clientes', '#selectCliente', 'Cliente');
-
-
-
-
-        $('#tblDetalleVenta').on('click', 'tr', function () {
-            var jsData = dataTable.row(this).data();
-            $('#primary').modal('show');
-            $('#primary').text(jsData[0]); //[0] will display 1st column of your table
-            $.get(jsData.url, function (data, status) {
-                /*         document.getElementById("imagepreview").src = data.sprites.back_default;*/
-                $("#nombre").text(data.name);
-                $("#peso").text(data.weight);
-                $("#base_experience").text(data.base_experience);
-
-                $("#imgPokemones").html("");
-                $.each(data.sprites, function (key, value) {
-
-                    if (value != null && key != "versions" && key != "other") {
-                        console.log(key + ": " + value);
-                        var img = document.createElement("img");
-                        img.src = value;
-                        var src = document.getElementById("imgPokemones");
-                        src.appendChild(img);
-                    }
-                });
-            });
-        })
+        cargarOpciones('http://localhost:5014/Clientes', '#selectCliente', 'Cliente');       
         //termina parte peticion
-
 
         // Función genérica para cargar opciones en un selector
         function cargarOpciones(url, selector, optionText) {
@@ -428,17 +383,10 @@
                 success: function (data) {
                     // Limpiar opciones actuales del selector
                     $(selector).empty();
-
                     // Agregar opción inicial
                     $(selector).append($('<option>').text('-- Seleccione ' + optionText + ' --').attr('value', ''));
-
-
-
                     if (selector == '#selectSucursal') {
-
                         $(selector).val(data.nombreSucursal);
-
-
                     } else if (selector == '#selectEmpleado') {
                         $.each(data, function (index, item) {
                             $(selector).append($('<option>').text(item.usuarioSistema).attr('value', item.idEmpleado));
@@ -467,15 +415,12 @@
             // Cargar opciones de sucursales relacionadas con el empleado seleccionado
             cargarOpciones(url, '#selectSucursal', 'una Sucursal');
 
-
         });
         $('#selectCliente').change(function () {
             // Obtener el descuento del cliente seleccionado
             let selectedOption = $(this).find('option:selected');
             let descuento = selectedOption.data('descuento');
-            $("#descuentos").val(descuento)
-            // console.log('Descuento seleccionado:', descuento);
-            // Aquí puedes agregar la lógica para usar el descuento seleccionado
+            $("#descuentos").val(descuento);            
         });
 
 
@@ -484,8 +429,6 @@
 
         // Cargar clientes
         cargarOpciones('http://localhost:5014/Clientes', '#selectCliente', 'Cliente');
-
-
 
 
         // Configurar Autocompletado
@@ -518,16 +461,9 @@
             select: function (event, ui) {
                 $("#servicioProducto").val(ui.item.label); // Establece el valor visible en el campo de entrada
                 $("#servicioProductoHidden").val(ui.item.value); // Establece el valor oculto en el campo oculto
-
                 // Asegúrate de que 'return false;' esté deteniendo la propagación del evento si es necesario
                 return false;
-
             }
         });
-
-
-        // });
-
-
     </script>
 }
