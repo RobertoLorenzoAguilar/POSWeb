@@ -329,60 +329,6 @@
                 success: function (data) {
                     // Limpiar opciones actuales del selector
                     $(selector).empty();
-
-                    // Agregar opción inicial
-                    $(selector).append($('<option>').text('-- Seleccione ' + optionText + ' --').attr('value', ''));
-
-                    if (selector == '#selectSucursal') {
-
-                        $(selector).val(data.nombreSucursal);
-
-
-                    } else if (selector == '#selectEmpleado') {
-                        $.each(data, function (index, item) {
-                            $(selector).append($('<option>').text(item.usuarioSistema).attr('value', item.idEmpleado));
-                        });
-                    } else if (selector == '#selectCliente') {
-                        $.each(data, function (index, item) {
-                            $(selector).append($('<option>').text(item.rfcCliente).attr('value', item.idCliente));
-                        });
-                    }
-                },
-                error: function () {
-                    console.error('Error al cargar ' + optionText.toLowerCase() + '.');
-                }
-            });
-        }
-
-        $('#selectEmpleado').change(function () {
-            //Obtener el ID del Empleado
-            let idEmpleadoSeleccionado = this.value;
-
-            // Construir la URL para obtener las sucursales por empleado
-            let url = `http://localhost:5014/Empleado/getEmpleadoById?IdEmpleado=${idEmpleadoSeleccionado}`;
-
-            // Cargar opciones de sucursales relacionadas con el empleado seleccionado
-            cargarOpciones(url, '#selectSucursal', 'una Sucursal');
-
-
-        });
-
-        // Cargar empleados (tipo Asesor de Venta)
-        cargarOpciones('http://localhost:5014/Empleados', '#selectEmpleado', 'Empleado');
-
-        // Cargar clientes
-        cargarOpciones('http://localhost:5014/Clientes', '#selectCliente', 'Cliente');       
-        //termina parte peticion
-
-        // Función genérica para cargar opciones en un selector
-        function cargarOpciones(url, selector, optionText) {
-            $.ajax({
-                url: url,
-                type: 'GET',
-                dataType: 'json',
-                success: function (data) {
-                    // Limpiar opciones actuales del selector
-                    $(selector).empty();
                     // Agregar opción inicial
                     $(selector).append($('<option>').text('-- Seleccione ' + optionText + ' --').attr('value', ''));
                     if (selector == '#selectSucursal') {
@@ -415,6 +361,26 @@
             // Cargar opciones de sucursales relacionadas con el empleado seleccionado
             cargarOpciones(url, '#selectSucursal', 'una Sucursal');
 
+
+        });
+
+        // Cargar empleados (tipo Asesor de Venta)
+        cargarOpciones('http://localhost:5014/Empleados', '#selectEmpleado', 'Empleado');
+
+        // Cargar clientes
+        cargarOpciones('http://localhost:5014/Clientes', '#selectCliente', 'Cliente');       
+        //termina parte peticion      
+
+        $('#selectEmpleado').change(function () {
+            //Obtener el ID del Empleado
+            let idEmpleadoSeleccionado = this.value;
+
+            // Construir la URL para obtener las sucursales por empleado
+            let url = `http://localhost:5014/Empleado/getEmpleadoById?IdEmpleado=${idEmpleadoSeleccionado}`;
+
+            // Cargar opciones de sucursales relacionadas con el empleado seleccionado
+            cargarOpciones(url, '#selectSucursal', 'una Sucursal');
+
         });
         $('#selectCliente').change(function () {
             // Obtener el descuento del cliente seleccionado
@@ -422,15 +388,7 @@
             let descuento = selectedOption.data('descuento');
             $("#descuentos").val(descuento);            
         });
-
-
-        // Cargar empleados (tipo Asesor de Venta)
-        cargarOpciones('http://localhost:5014/Empleados', '#selectEmpleado', 'Empleado');
-
-        // Cargar clientes
-        cargarOpciones('http://localhost:5014/Clientes', '#selectCliente', 'Cliente');
-
-
+        
         // Configurar Autocompletado
         $("#servicioProducto").autocomplete({
             source: function (request, response) {
