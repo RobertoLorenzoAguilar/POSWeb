@@ -314,6 +314,11 @@ if (app.Environment.IsDevelopment())
 }
 ```
 
+#  ¿Será buena opción gestionar ofertas temporales dentro del módulo Precio Producto?
+
+<img src="Images/oferta-temporal.PNG" alt="Logo">
+
+
 # Generando Venta
 <img src="Images/venta.PNG" alt="Logo">
 
