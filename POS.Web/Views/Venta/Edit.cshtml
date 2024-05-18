@@ -1,68 +1,105 @@
-﻿@model ProductoViewModel
+﻿@model VentaViewModel
 
 <div class=" card text-primary">
     <div class="card-header text-center">
-        <h5>Editar Producto</h5>
+        <h5>Editar Venta</h5>
     </div>
     <div class=" card-body text-primary">
         <div class="row">
             <div class="col-md-12">
                 <form asp-action="Edit">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <input type="hidden" asp-for="IdProducto" />
+                    <input type="hidden" asp-for="IdVenta" />
+
                     <div class="form-group">
-                        <label></label>
-                        <select class="form-control" asp-for="TipoProducto">
-                            <option value="">-- Seleccione un Tipo de Producto --</option>
-                            <option value="Producto">Producto</option>
-                            <option value="Servicio">Servicio</option>
+                        <label>Cliente RFC:</label>
+                        <select id="selectCliente" class="form-control" asp-for="IdCliente">
+                            <option value="">-- Seleccione Cliente --</option>
                         </select>
-                        <span asp-validation-for="TipoImpuesto" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="NombreProducto" class="control-label"></label>
-                        <input asp-for="NombreProducto" class="form-control" />
-                        <span asp-validation-for="NombreProducto" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DescripcionProducto" class="control-label"></label>
-                        <textarea asp-for="DescripcionProducto" class="form-control"></textarea>
-                        <span asp-validation-for="DescripcionProducto" class="text-danger"></span>
-                    </div>                    
-                    <div class="form-group">
-                        <label asp-for="FolioProducto" class="control-label"></label>
-                        <input asp-for="FolioProducto" class="form-control"/>
-                        <span asp-validation-for="FolioProducto" class="text-danger"></span>
+                        <span asp-validation-for="IdCliente" class="text-danger"></span>
                     </div>
 
-                    <div class="form-group">                        
-                        <label style="display: block; text-align: left; margin-bottom: 0;">¿Tiene Impuesto?</label>
-                        <div class="form-check">
-                            <input asp-for="TieneImpuesto" class="form-check-input" />
-                            <span asp-validation-for="TieneImpuesto" class="text-danger"></span>
-                        </div>
-                    </div>
                     <div class="form-group">
-                        <label asp-for="TipoImpuesto" class="control-label"></label>
-                        <select class="form-control" id="impuestoSelect" asp-for="TipoImpuesto">
-                            <option value="">-- Seleccione un impuesto --</option>
-                            <option value="IVA">IVA</option>
-                            <option value="ISR">ISR</option>
+                        <label>Empleado Usuario:</label>
+                        <select id="selectEmpleado" class="form-control" asp-for="IdEmpleado">
+                            <option value="">-- Seleccione Empleado --</option>
                         </select>
-                        <span asp-validation-for="TipoImpuesto" class="text-danger"></span>
+                        <span asp-validation-for="IdEmpleado" class="text-danger"></span>
                     </div>
+
+
                     <div class="form-group">
-                        <label asp-for="Traslado" class="control-label"></label>                        
-                        <div class="form-check">
-                            <input asp-for="Traslado" class="form-check-input" />
-                            <span asp-validation-for="Traslado" class="text-danger"></span>
+                        <label>Tipo Venta:</label>
+                        <select id="selectTipoVenta" class="form-control" asp-for="TipoVenta">
+                            <option value="">-- Seleccione Tipo Venta --</option>
+                            <option value="contado">Contado</option>
+                            <option value="credito">Crédito</option>
+                        </select>
+                        <span asp-validation-for="TipoVenta" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sucursal Nombre (Asignada al Empleado):</label>
+                        <input readonly id="selectSucursal" class="form-control" placeholder="">
+                    </div>
+
+                    @* detalle producto *@
+                    <div class="form-group">
+                        <label>Agregar Servicio o Producto:</label>
+                        <div class="input-group" id="servicioProductoHidden">
+                            <input id="servicioProducto" class="form-control" placeholder="">
+                            <div class="input-group-append">
+                                <button type="button" id="btnAgregarProducto" class="btn btn-primary">Agregar</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Retencion" class="control-label"></label>                        
-                        <div class="form-check">
-                            <input asp-for="Retencion" class="form-check-input" />
-                            <span asp-validation-for="Retencion" class="text-danger"></span>
+
+                    <div class="container">
+                        <label></label>
+                        <div class="row">
+                            <table id="tblDetalleVenta" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Folio</th>
+                                        <th>Nombre</th>
+                                        <th>Descripcion </th>
+                                        <th>Precio Unitario</th>
+                                        <th>Cantidad</th>
+                                        <th>Retención</th>
+                                        <th>Traslado</th>
+                                        <th>Subtotal</th>
+                                        <th class="Total">Total</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    @* !-- Agrega los campos para mostrar los totales --> *@
+                    <div class="container">
+                        <div class="row mt-3">
+                            <div class="col-6 offset-md-6 text-right">
+                                <label for="subtotal">Subtotal:</label>
+                                <br />
+                                <label> (Sumatoria Por Producto sin impuesto aplicado):</label>
+                                <input type="text" class="form-control form-control-sm" id="subtotal" readonly>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-6 offset-md-6 text-right">
+                                <label for="descuentos">Descuentos:</label>
+                                <input type="text" class="form-control form-control-sm" id="descuentos" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3" style="margin-bottom:5px;">
+                            <div class="col-6 offset-md-6 text-right">
+                                <label for="total">Total:</label>
+                                <label>(Sumatoria Por Producto con impuesto aplicado menos el descuento del cliente)</label>
+                                <input asp-for="TotalVenta" type="text" class="form-control form-control-sm" id="totalVenta" readonly>
+                            </div>
                         </div>
                     </div>
                     <div class=" card-footer text-center">

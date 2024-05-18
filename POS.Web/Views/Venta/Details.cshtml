@@ -1,70 +1,58 @@
-﻿@model ProductoViewModel
+﻿@model VentaViewModel
 
 
 <div class=" card text-primary">
     <div class=" card-header text-center ">
-        <h5>Producto</h5>
+        <h5>Venta</h5>
     </div>
     <div class=" card-body ">
         <dl class="row">
             <dt class="col-sm-2 text-center text-dark">
-                Nombre Producto
+                RFC Cliente
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.NombreProducto)
+                @Html.DisplayFor(model => model.RfcCliente)
             </dd>
 
             <dt class="col-sm-2 text-center text-dark">
-                Descripción Producto
+                Empleado
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.DescripcionProducto)
+                @Html.DisplayFor(model => model.UsuarioEmpleado)
             </dd>
 
             <dt class="col-sm-2 text-center text-dark">
-                Tipo Producto
+                Tipo Venta
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.TipoProducto)
+                @Html.DisplayFor(model => model.TipoVenta)
             </dd>
 
             <dt class="col-sm-2 text-center text-dark">
-                Porcentaje
-            </dt>
-            @* <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Porcentaje)
-            </dd> *@
-
-            <dt class="col-sm-2 text-center text-dark">
-                ¿Tiene Impuesto?
+                Sucursal
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.TieneImpuesto)
+                @Html.DisplayFor(model => model.NombreSucursal)
             </dd>
 
             <dt class="col-sm-2 text-center text-dark">
-                Tipo Impuesto
+                Total
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.TipoImpuesto)
+                @Html.DisplayFor(model => model.TotalVenta)
             </dd>
+
             <dt class="col-sm-2 text-center text-dark">
-                Retención
+                Detalle Venta
             </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Retencion)
-            </dd>
             <dt class="col-sm-2 text-center text-dark">
-                Traslado
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Traslado)
-            </dd>
+                Detalles
+            </dt>           
 
         </dl>
     </div>
     <div class=" card-footer text-center">
-        <a asp-action="Edit" asp-route-id="@Model.IdProducto" class="btn btn-outline-warning btn-sm">Editar</a>
+        <a asp-action="Edit" asp-route-id="@Model.IdVenta" class="btn btn-outline-warning btn-sm">Editar</a>
         <a asp-action="Index" class=" btn btn-outline-success btn-sm">volver a la lista</a>
     </div>
 </div>

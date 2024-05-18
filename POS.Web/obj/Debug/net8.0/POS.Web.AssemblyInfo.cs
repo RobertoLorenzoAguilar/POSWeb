@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("POS.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+533fce3ae1c2d72800953aee1791a64fb82070f6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a53592c15a360c87769d3a06b2039ed545910bb5")]
 [assembly: System.Reflection.AssemblyProductAttribute("POS.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("POS.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

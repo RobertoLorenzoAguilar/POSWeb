@@ -1,5 +1,6 @@
 ﻿using Datos.Models;
 using Microsoft.EntityFrameworkCore;
+using Negocios.DTO;
 using Negocios.Interfaces;
 namespace Negocios.Clases
 {
@@ -21,7 +22,7 @@ namespace Negocios.Clases
                 if (existingVenta != null)
                 {
                     // Se remueve la instancia del contexto para poder eliminarla
-                    db.TblVenta.Remove(existingVenta);  
+                    db.TblVenta.Remove(existingVenta);
                     // Adjuntar el Venta actualizado al contexto de Entity Framework
                     db.TblVenta.Attach(updatedVenta);
 
@@ -67,16 +68,32 @@ namespace Negocios.Clases
                 return (false, $"Error al eliminar el Venta: {ex.Message}");
             }
         }
-        public (TblVentum Venta, bool Success, string ErrorMessage) GetVenta(int IdVenta)
+        public (VentaDTO Venta, bool Success, string ErrorMessage) GetVenta(int IdVenta)
         {
             try
             {
-                TblVentum Venta = db.TblVenta
-                                       .FirstOrDefault(x => x.IdVenta == IdVenta && x.Eliminado == false);
+                TblVentum objVenta = db.TblVenta
+                        .Include(e => e.IdClienteNavigation)
+                        .Include(e => e.IdEmpleadoNavigation)
+                        .Include(e => e.IdEmpleadoNavigation.IdSucursalNavigation)
+                        .FirstOrDefault(x => x.IdVenta == IdVenta && x.Eliminado == false);
 
-                if (Venta != null)
+
+                VentaDTO objVentaDTO = new VentaDTO();
+                objVentaDTO.IdVenta = objVenta.IdVenta;
+                objVentaDTO.TipoVenta = objVenta.TipoVenta;
+                objVentaDTO.IdCliente = objVenta.IdCliente;
+                objVentaDTO.RfcCliente = objVenta.IdClienteNavigation.RfcCliente;
+                objVentaDTO.IdEmpleado = objVenta.IdEmpleado;
+                objVentaDTO.UsuarioEmpleado = objVenta.IdEmpleadoNavigation.NombreEmpleado;
+                objVentaDTO.IdSucursal = objVenta.IdEmpleadoNavigation.IdSucursal;
+                objVentaDTO.NombreSucursal = objVenta.IdEmpleadoNavigation.IdSucursalNavigation.NombreSucursal;
+                objVentaDTO.FechaVenta = objVenta.FechaVenta;
+                objVentaDTO.TotalVenta = objVenta.TotalVenta;
+
+                if (objVentaDTO != null)
                 {
-                    return (Venta, true, ""); // Devolver el Venta encontrado y éxito sin mensaje de error
+                    return (objVentaDTO, true, ""); // Devolver el Venta encontrado y éxito sin mensaje de error
                 }
                 else
                 {
@@ -89,15 +106,54 @@ namespace Negocios.Clases
                 return (null, false, $"Error al obtener Venta: {ex.Message}");
             }
         }
-        public (List<TblVentum> Ventas, bool Success, string ErrorMessage) GetVentas()
+        //public (List<TblVentum> Ventas, bool Success, string ErrorMessage) GetVentas()
+        //{
+        //    try
+        //    {
+        //        List<TblVentum> Ventas = db.TblVenta
+        //                                      .Where(x => x.Eliminado == false)
+        //                                      .ToList();
+
+        //        return (Ventas, true, ""); // Devolver la lista de Ventas y éxito sin mensaje de error
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Devolver una tupla indicando fallo y el mensaje de error
+        //        return (null, false, $"Error al obtener Ventas: {ex.Message}");
+        //    }
+        //}
+
+        public (List<VentaDTO> Ventas, bool Success, string ErrorMessage) GetVentas()
         {
             try
             {
-                List<TblVentum> Ventas = db.TblVenta
+                List<TblVentum> lstVentas = db.TblVenta
+                .Include(e => e.IdClienteNavigation)
+                .Include(e => e.IdEmpleadoNavigation)
+                .Include(e => e.IdEmpleadoNavigation.IdSucursalNavigation)
                                               .Where(x => x.Eliminado == false)
                                               .ToList();
 
-                return (Ventas, true, ""); // Devolver la lista de Ventas y éxito sin mensaje de error
+
+                List<VentaDTO> lstVentaDTO = new List<VentaDTO>();
+                foreach (var objVenta in lstVentas)
+                {
+                    VentaDTO objVentaDTO = new VentaDTO();
+                    objVentaDTO.IdVenta = objVenta.IdVenta;
+                    objVentaDTO.TipoVenta = objVenta.TipoVenta;
+                    objVentaDTO.IdCliente = objVenta.IdCliente;
+                    objVentaDTO.RfcCliente = objVenta.IdClienteNavigation.RfcCliente;
+                    objVentaDTO.IdEmpleado = objVenta.IdEmpleado;
+                    objVentaDTO.UsuarioEmpleado = objVenta.IdEmpleadoNavigation.NombreEmpleado;
+                    objVentaDTO.IdSucursal = objVenta.IdEmpleadoNavigation.IdSucursal;
+                    objVentaDTO.NombreSucursal = objVenta.IdEmpleadoNavigation.IdSucursalNavigation.NombreSucursal;
+                    objVentaDTO.FechaVenta = objVenta.FechaVenta;
+                    objVentaDTO.TotalVenta = objVenta.TotalVenta;
+                    // Puedes asignar otros valores según sea necesario
+                    lstVentaDTO.Add(objVentaDTO);
+                }
+
+                return (lstVentaDTO, true, ""); // Devolver la lista de Ventas y éxito sin mensaje de error
             }
             catch (Exception ex)
             {
@@ -105,10 +161,14 @@ namespace Negocios.Clases
                 return (null, false, $"Error al obtener Ventas: {ex.Message}");
             }
         }
+
         public (bool Success, string ErrorMessage) GuardarVenta(TblVentum objVenta)
         {
             try
             {
+                // Setear la hora actual
+                DateTime currentDate = DateTime.Now;
+                objVenta.FechaVenta = currentDate;
                 db.TblVenta.Add(objVenta);
                 db.SaveChanges();
                 return (true, ""); // Devolver éxito sin mensaje de error
