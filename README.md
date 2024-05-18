@@ -329,6 +329,7 @@ if (app.Environment.IsDevelopment())
 10) Agregar el campo precio al momento de la venta.
 11) Mostrar errores desde el back-end API.
 12) Validaciones de Flujo en el front-end. Ejemplo: antes de agregar artículos, traer el descuento del cliente.
+13) Validaciones de detalles de venta en el back-end.
 
 # BUENO POR HACER:
 1) Agreger pruebas unitarias
