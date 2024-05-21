@@ -430,30 +430,9 @@
 
             btnVenta.addEventListener("click", function (event) {
                 // Code to execute before the form submission
-                console.log("Button clicked, but form not yet submitted");
-
-                extraerIdProductosVenta();
-
-                // You can prevent the form from submitting if necessary
-                // event.preventDefault();
-
-                // Example: validate form fields
-                // var formIsValid = validateForm();
-                // if (!formIsValid) {
-                //     // Prevent form submission if validation fails
-                //     event.preventDefault();
-                //     alert("Form is not valid!");
-                // }
+                extraerIdProductosVenta();                
             });
-
-            function validateForm() {
-                // Perform form validation
-                // Return true if valid, false otherwise
-                // This is just an example validation
-                var isValid = true;
-                // Add your validation logic here
-                return isValid;
-            }
+            
 
             //  recorrer tabla para traer los valores de los id del producto
             function extraerIdProductosVenta() {

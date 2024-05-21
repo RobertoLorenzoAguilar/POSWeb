@@ -162,15 +162,37 @@ namespace Negocios.Clases
             }
         }
 
-        public (bool Success, string ErrorMessage) GuardarVenta(VentaDTO objVenta)
+        public (bool Success, string ErrorMessage) GuardarVenta(VentaDTO objVentaDTO)
         {
             try
             {
+
                 // Setear la hora actual
-                DateTime currentDate = DateTime.Now;
-                objVenta.FechaVenta = currentDate;
-                //db.TblVenta.Add(objVenta);
-                db.SaveChanges();
+                DateTime currentDate = DateTime.Now;             
+                //  Guardamos primero la venta y recuperamos el ig
+                TblVentum objTblVenta = new TblVentum();
+                objTblVenta.IdVenta = objVentaDTO.IdVenta;
+                objTblVenta.TipoVenta = objVentaDTO.TipoVenta;
+                objTblVenta.IdCliente = objVentaDTO.IdCliente;
+                objTblVenta.IdEmpleado = objVentaDTO.IdEmpleado;
+                objTblVenta.FechaVenta = currentDate;
+                objTblVenta.TotalVenta = objVentaDTO.TotalVenta;
+                db.TblVenta.Add(objTblVenta);
+
+                db.SaveChanges(); //    guardamos a venta
+
+                int IdVenta = objTblVenta.IdVenta;
+
+                foreach (var objCantIDProd in objVentaDTO.LstProducto)
+                {
+                    TblVentaDetalle objDetalle = new TblVentaDetalle();
+                    objDetalle.IdVenta = IdVenta;                   
+                    objDetalle.Cantidad = objCantIDProd.cantidad;
+                    objDetalle.IdProducto = objCantIDProd.idProducto;
+                    db.TblVentaDetalles.Add(objDetalle);
+                    db.SaveChanges(); //    guardamos a venta
+                }               
+                
                 return (true, ""); // Devolver éxito sin mensaje de error
             }
             catch (DbUpdateException ex)

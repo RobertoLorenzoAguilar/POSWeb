@@ -32,9 +32,9 @@
                                     <th>
                                         Total
                                     </th>
-                                    <th>
+                                    @* <th>
                                         Detalles
-                                    </th>
+                                    </th> *@
 
                                     <th>Acciones</th>
                                 </tr>
@@ -58,10 +58,10 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.TotalVenta)
                                         </td>
-                                        <td>
+                                     @*    <td>
                                             <a asp-action="" asp-route-id="@item.IdVenta" class="btn btn-outline-success" btn-sm">Ver</a>
 
-                                        </td>
+                                        </td> *@
                                         <td>
                                             <a asp-action="Edit" asp-route-id="@item.IdVenta" class="btn btn-outline-warning btn-sm">Editar</a>
                                             <a asp-action="Details" asp-route-id="@item.IdVenta" class="btn btn-outline-info btn-sm">Detalles</a>

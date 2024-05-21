@@ -80,7 +80,7 @@ namespace Negocios.Clases
                                        .FirstOrDefault(x => x.IdEmpleado == IdEmpleado && x.Eliminado == false);
 
 
-                EmpleadoDTO objEmpleadoDto = new EmpleadoDTO();
+                EmpleadoDTO objEmpleadoDto = new();
                 objEmpleadoDto.IdEmpleado = empleado.IdEmpleado;
                 objEmpleadoDto.NombreEmpleado = empleado.NombreEmpleado;
                 objEmpleadoDto.ApellidoPaterno = empleado.ApellidoPaterno;
