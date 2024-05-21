@@ -15,6 +15,16 @@
         public string? NombreSucursal { get; set; } = null;
         public DateTime FechaVenta { get; set; }  //se guarda al momento de registrar la venta
         public decimal TotalVenta { get; set; }
+        public int txtProducto { get; set; } = 0;
+        public List<ProductoCantidad> LstProducto { get; set; } = new List<ProductoCantidad>();
+        //public List<(string, int)> LstProducto { get; set; } = new List<(string, int)>();
+        //public int producto { get; set; }  //almacena un lisado de productos
 
     }
+    public class ProductoCantidad
+    {
+        public int idProducto { get; set; }
+        public int cantidad { get; set; }
+    }
+
 }

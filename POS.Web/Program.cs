@@ -6,6 +6,12 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient(); // servicio para realizar solicitudes http      
 
+//builder.Services.AddControllers()
+//    .AddJsonOptions(options =>
+//    {
+//        options.JsonSerializerOptions.PropertyNamingPolicy = null; // Para desactivar la convención de nomenclatura de propiedades
+//    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -19,14 +25,8 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Producto}/{action=Index}/{id?}");
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Empleado}/{action=Index}/{id?}");
+    pattern: "{controller=Venta}/{action=Index}/{id?}");
 
 app.Run();

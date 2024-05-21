@@ -2,6 +2,7 @@
 using POS.Web.Models;
 using Newtonsoft.Json;
 using System.Text;
+using System.Collections.Generic;
 
 namespace POS.Web.Controllers
 {
@@ -59,6 +60,15 @@ namespace POS.Web.Controllers
             {
                 var json = JsonConvert.SerializeObject(Venta);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                // Deserialización manual verificar problemas que puedan afectar este comportamiento
+                var listaProductosEntry = ModelState["LstProducto"];
+                if (listaProductosEntry != null && listaProductosEntry.RawValue != null)
+                {
+                    var listaProductosJson = listaProductosEntry.RawValue.ToString();
+                    // Aquí puedes continuar con la deserialización de listaProductosJson
+                    Venta.LstProducto = JsonConvert.DeserializeObject<List<ProductoCantidad>>(listaProductosJson);
+                }
 
                 //var response = await _httpClient.PostAsync("http://localhost:5014/Venta/guardar", content);
                 var response = await _httpClient.PostAsync("/Venta/guardar", content);
@@ -142,6 +152,40 @@ namespace POS.Web.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        //public async Task<IActionResult> AgregarDetalle(List<int>  lstInt )
+        //{
+
+
+        //    var a = Models.VentaViewModel;
+
+        //    // Aquí puedes trabajar con los datos recibidos y actualizar el modelo existente
+        //    var model = new VentaViewModel
+        //    {
+        //        LstProducto = lstInt
+        //    };
+
+
+        //    if (ModelState.IsValid)
+        //    {
+
+        //    }
+
+        //        //var response = await _httpClient.DeleteAsync($"http://localhost:5014/Ventas/eliminar?IdVenta={id}");
+        //        var response = await _httpClient.DeleteAsync($"/Ventas/eliminar?IdVent");
+
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        // Maneja el caso de eliminación exitosa, por ejemplo, redirigiendo a la página de lista de Ventas.
+        //        return RedirectToAction("Index");
+        //    }
+        //    else
+        //    {
+        //        // Maneja el caso de error en la solicitud DELETE, por ejemplo, mostrando un mensaje de error.
+        //        TempData["Error"] = "Error al eliminar el Venta.";
+        //        return RedirectToAction("Index");
+        //    }
+        //}
 
     }
 }

@@ -1,12 +1,88 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\R\\source\\repos\\POSWeb\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|c:\\users\\r\\source\\repos\\posweb\\pos.web\\controllers\\ventacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|solutionrelative:pos.web\\controllers\\ventacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|c:\\users\\r\\source\\repos\\posweb\\pos.web\\views\\venta\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|solutionrelative:pos.web\\views\\venta\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|c:\\users\\r\\source\\repos\\posweb\\pos.web\\models\\ventaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|solutionrelative:pos.web\\models\\ventaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|c:\\users\\r\\source\\repos\\posweb\\pos.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|solutionrelative:pos.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Program.cs",
+              "RelativeDocumentMoniker": "POS.Web\\Program.cs",
+              "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Program.cs",
+              "RelativeToolTip": "POS.Web\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-21T14:44:43.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "VentaController.cs",
+              "DocumentMoniker": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Controllers\\VentaController.cs",
+              "RelativeDocumentMoniker": "POS.Web\\Controllers\\VentaController.cs",
+              "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Controllers\\VentaController.cs",
+              "RelativeToolTip": "POS.Web\\Controllers\\VentaController.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAYwEkAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-20T21:33:19.159Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VentaViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Models\\VentaViewModel.cs",
+              "RelativeDocumentMoniker": "POS.Web\\Models\\VentaViewModel.cs",
+              "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Models\\VentaViewModel.cs",
+              "RelativeToolTip": "POS.Web\\Models\\VentaViewModel.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAYwBkAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-20T21:27:32.559Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Views\\Venta\\Create.cshtml",
+              "RelativeDocumentMoniker": "POS.Web\\Views\\Venta\\Create.cshtml",
+              "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Views\\Venta\\Create.cshtml",
+              "RelativeToolTip": "POS.Web\\Views\\Venta\\Create.cshtml",
+              "ViewState": "AQIAAMUBAAAAAAAAAAAIwM8BAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-20T21:23:46.737Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

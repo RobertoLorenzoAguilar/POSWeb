@@ -1,4 +1,5 @@
-﻿@model VentaViewModel
+﻿@using Newtonsoft.Json
+@model VentaViewModel
 
 <div class=" card text-primary">
     <div class="card-header text-center">
@@ -6,7 +7,7 @@
     </div>
     <div class=" card-body text-center">
         <div class=" col-md-12">
-            <form asp-action="Create">
+            <form id="createVentaId" asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 
@@ -39,7 +40,7 @@
 
                 <div class="form-group">
                     <label>Sucursal Nombre (Asignada al Empleado):</label>
-                    <input  readonly id="selectSucursal" class="form-control" placeholder="">
+                    <input readonly id="selectSucursal" class="form-control" placeholder="">
                 </div>
 
                 @* detalle producto *@
@@ -92,7 +93,7 @@
                             <input type="text" class="form-control form-control-sm" id="descuentos" readonly>
                         </div>
                     </div>
-                    
+
                     <div class="row mt-3" style="margin-bottom:5px;">
                         <div class="col-6 offset-md-6 text-right">
                             <label for="total">Total:</label>
@@ -102,10 +103,12 @@
                     </div>
                 </div>
 
-                <div class=" card-footer text-center">                    
-                    
+                @* con esto manejare el listado de enteros cantidad y producto *@
+                <input type="hidden" name="LstProducto" id="LstProducto" value="">                
+
+                <div class=" card-footer text-center">
                     <div class="form-group">
-                        <input type="submit" value="Generar Venta" class="btn btn-outline-primary btn-sm" />
+                        <input type="submit" id="btnVenta" value="Generar Venta" class="btn btn-outline-primary btn-sm" />
                         <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver a la Lista</a>
                     </div>
                 </div>
@@ -113,7 +116,6 @@
         </div>
     </div>
 </div>
-
 
 @section Scripts {
     @* el Orden es eimportante *@
@@ -130,6 +132,8 @@
 
     <!-- Incluir jQuery DataTables desde CDN Iconos -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+
+
 
     <script>
         $(document).ready(function () {
@@ -203,14 +207,6 @@
 
                 ]
             });
-
-            // // Manejar clic en el botón de eliminar
-            // $('#tblDetalleVenta').on('click', '.eliminar', function () {
-            //     var table = $('#tblDetalleVenta').DataTable();
-            //     var row = $(this).closest('tr');
-            //     table.row(row).remove().draw(false); // Remover la fila y redibujar la tabla
-            // });
-
 
             // Manejar el cambio de cantidad
             $(document).on('change', '#txtCantidad', function () {
@@ -371,8 +367,8 @@
         cargarOpciones('http://localhost:5014/Empleados', '#selectEmpleado', 'Empleado');
 
         // Cargar clientes
-        cargarOpciones('http://localhost:5014/Clientes', '#selectCliente', 'Cliente');       
-        //termina parte peticion      
+        cargarOpciones('http://localhost:5014/Clientes', '#selectCliente', 'Cliente');
+        //termina parte peticion
 
         $('#selectEmpleado').change(function () {
             //Obtener el ID del Empleado
@@ -389,9 +385,9 @@
             // Obtener el descuento del cliente seleccionado
             let selectedOption = $(this).find('option:selected');
             let descuento = selectedOption.data('descuento');
-            $("#descuentos").val(descuento);            
+            $("#descuentos").val(descuento);
         });
-        
+
         // Configurar Autocompletado
         $("#servicioProducto").autocomplete({
             source: function (request, response) {
@@ -424,6 +420,78 @@
                 $("#servicioProductoHidden").val(ui.item.value); // Establece el valor oculto en el campo oculto
                 // Asegúrate de que 'return false;' esté deteniendo la propagación del evento si es necesario
                 return false;
+            }
+        });
+
+
+        // Listeners
+        document.addEventListener("DOMContentLoaded", function () {
+            var btnVenta = document.getElementById("btnVenta");
+
+            btnVenta.addEventListener("click", function (event) {
+                // Code to execute before the form submission
+                console.log("Button clicked, but form not yet submitted");
+
+                extraerIdProductosVenta();
+
+                // You can prevent the form from submitting if necessary
+                // event.preventDefault();
+
+                // Example: validate form fields
+                // var formIsValid = validateForm();
+                // if (!formIsValid) {
+                //     // Prevent form submission if validation fails
+                //     event.preventDefault();
+                //     alert("Form is not valid!");
+                // }
+            });
+
+            function validateForm() {
+                // Perform form validation
+                // Return true if valid, false otherwise
+                // This is just an example validation
+                var isValid = true;
+                // Add your validation logic here
+                return isValid;
+            }
+
+            //  recorrer tabla para traer los valores de los id del producto
+            function extraerIdProductosVenta() {
+                var tabla = document.getElementById('tblDetalleVenta');
+                // Obtener todas las filas de la tabla (excluyendo la fila de encabezado)
+                var filas = tabla.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+                let listIdsProduct = [];               
+
+                Array.from(filas).forEach(function (fila) {
+                    var celdas = fila.getElementsByTagName('td');
+                    let idProd = parseInt(celdas[9].querySelector('.eliminarBtn').getAttribute('data-id'));
+                    const cantidadElemento = parseInt(celdas[4].querySelector('div.input-group .txtCantidad').value);
+
+                    let productoCantidad = {
+                        idProducto: idProd,
+                        cantidad: cantidadElemento
+                    };
+
+                    listIdsProduct.push(productoCantidad);
+                });
+
+                // Luego, convierte la lista de productos a JSON y establece el valor del campo oculto
+                document.getElementById('LstProducto').value = JSON.stringify(listIdsProduct);
+
+                
+
+                // Obtener el formulario
+                var formulario = document.getElementById('createVentaId');
+
+                // Crear un objeto FormData con el formulario
+                var formData = new FormData(formulario);                
+
+                // Mostrar los datos en la consola
+                for (var pair of formData.entries()) {
+                    console.log(pair[0] + ': ' + pair[1]);
+                }
+                
             }
         });
     </script>
