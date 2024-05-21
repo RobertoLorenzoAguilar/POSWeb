@@ -13,7 +13,7 @@
 
                     <div class="form-group">
                         <label>Cliente RFC:</label>
-                        <select id="selectCliente" class="form-control" asp-for="IdCliente">
+                        <select id="IdCliente" class="form-control" asp-for="IdCliente">
                             <option value="">-- Seleccione Cliente --</option>
                         </select>
                         <span asp-validation-for="IdCliente" class="text-danger"></span>
@@ -21,12 +21,19 @@
 
                     <div class="form-group">
                         <label>Empleado Usuario:</label>
-                        <select id="selectEmpleado" class="form-control" asp-for="IdEmpleado">
+                        <select id="IdEmpleado" class="form-control" asp-for="IdEmpleado">
                             <option value="">-- Seleccione Empleado --</option>
                         </select>
                         <span asp-validation-for="IdEmpleado" class="text-danger"></span>
                     </div>
-
+                    
+       @*              <div class="form-group">
+                        <label asp-for="IdSucursal">Seleccione una Sucursal:</label>
+                        <select id="IdSucursal" class="form-control" asp-for="IdSucursal">
+                            <option value="">-- Seleccione una Sucursal --</option>
+                        </select>
+                        <span asp-validation-for="IdSucursal" class="text-danger"></span>
+                    </div> *@
 
                     <div class="form-group">
                         <label>Tipo Venta:</label>
@@ -40,7 +47,7 @@
 
                     <div class="form-group">
                         <label>Sucursal Nombre (Asignada al Empleado):</label>
-                        <input readonly id="selectSucursal" class="form-control" placeholder="">
+                        <input readonly id="IdSucursal" class="form-control" placeholder="">
                     </div>
 
                     @* detalle producto *@
@@ -114,6 +121,79 @@
     </div>
 
 </div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            // Función genérica para cargar opciones en un selector
+            function cargarOpciones(url, selector, optionText) {
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        // Limpiar opciones actuales del selector
+                        $(selector).empty();
+                        // Agregar opción inicial
+                        $(selector).append($('<option>').text('-- Seleccione ' + optionText + ' --').attr('value', ''));
+                        if (selector == '#IdSucursal') {
+                            $(selector).val(data.nombreSucursal);
+
+
+                        } else if (selector == '#IdEmpleado') {
+                            $.each(data, function (index, item) {
+                                $(selector).append($('<option>').text(item.usuarioSistema).attr('value', item.idEmpleado));
+                            });
+
+                            //seteo de valores
+                            // Obtener el valor de IdEmpresa desde el modelo
+                            var IdEmpleadoValue = '@Model.IdEmpleado'; // Obtener el valor del modelo en Razor
+
+                            // Seleccionar automáticamente la opción correspondiente en el select
+                            $('#IdEmpleado').val(IdEmpleadoValue);
+
+
+                        } else if (selector == '#IdCliente') {
+                            $.each(data, function (index, item) {
+                                $(selector).append($('<option>').text(item.rfcCliente)
+                                    .attr('value', item.idCliente)
+                                    .attr('data-descuento', item.descuento));
+                            });
+                            // Obtener el valor de IdEmpresa desde el modelo
+                            var IdEmpleadoValue = '@Model.IdCliente'; // Obtener el valor del modelo en Razor
+
+                            // Seleccionar automáticamente la opción correspondiente en el select
+                            $('#IdCliente').val(IdEmpleadoValue);
+                        }
+                    },
+                    error: function () {
+                        console.error('Error al cargar ' + optionText.toLowerCase() + '.');
+                    }
+                });
+            }
+
+            // Cargar empleados (tipo Asesor de Venta)
+            cargarOpciones('http://localhost:5014/Empleados', '#IdEmpleado', 'Empleado');
+
+            // Cargar clientes
+            cargarOpciones('http://localhost:5014/Clientes', '#IdCliente', 'Cliente');
+
+
+            // cargar sucursal empleado
+            var IdEmpleadoValue = '@Model.IdEmpleado'; // Obtener el valor del modelo en Razor
+
+            // Seleccionar automáticamente la opción correspondiente en el select
+            $('#IdEmpleado').val(IdEmpleadoValue);
+
+            let url = `http://localhost:5014/Empleado/getEmpleadoById?IdEmpleado=${IdEmpleadoValue}`;
+            cargarOpciones(url, '#IdSucursal', 'una Sucursal');
+
+
+        });
+    </script>
+}
 
 
 
