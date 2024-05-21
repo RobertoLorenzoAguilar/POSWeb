@@ -9,7 +9,7 @@ namespace Negocios.Interfaces
         (bool Success, string ErrorMessage) EliminarVenta(int IdVenta);
         (VentaDTO Venta, bool Success, string ErrorMessage) GetVenta(int IdVenta);        
         (List<VentaDTO> Ventas, bool Success, string ErrorMessage) GetVentas();
-        (bool Success, string ErrorMessage) GuardarVenta(TblVentum objVenta);
+        (bool Success, string ErrorMessage) GuardarVenta(VentaDTO objVenta);
 
 
     }

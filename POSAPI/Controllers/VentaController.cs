@@ -1,7 +1,8 @@
 ﻿using Datos.Models;
 using Microsoft.AspNetCore.Mvc;
+using Negocios.DTO;
 using Negocios.Interfaces;
-
+using Newtonsoft.Json;
 namespace WebContratos.Controllers
 {
     public class VentaController : Controller
@@ -50,7 +51,7 @@ namespace WebContratos.Controllers
 
         [HttpPost]
         [Route("Venta/guardar")]
-        public IActionResult AgregarVenta([FromBody] TblVentum Venta)
+        public IActionResult AgregarVenta([FromBody] VentaDTO Venta)
         {
             try
             {
@@ -58,7 +59,7 @@ namespace WebContratos.Controllers
                 if (Venta == null)
                 {
                     return BadRequest("La solicitud no contiene datos válidos para la Venta.");
-                }
+                }       
 
                 // Intentar guardar la Venta
                 var resultado = _Venta.GuardarVenta(Venta);

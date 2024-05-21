@@ -58,8 +58,7 @@ namespace POS.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var json = JsonConvert.SerializeObject(Venta);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
+              
 
                 // Deserialización manual verificar problemas que puedan afectar este comportamiento
                 var listaProductosEntry = ModelState["LstProducto"];
@@ -69,6 +68,10 @@ namespace POS.Web.Controllers
                     // Aquí puedes continuar con la deserialización de listaProductosJson
                     Venta.LstProducto = JsonConvert.DeserializeObject<List<ProductoCantidad>>(listaProductosJson);
                 }
+
+
+                var json = JsonConvert.SerializeObject(Venta);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 //var response = await _httpClient.PostAsync("http://localhost:5014/Venta/guardar", content);
                 var response = await _httpClient.PostAsync("/Venta/guardar", content);

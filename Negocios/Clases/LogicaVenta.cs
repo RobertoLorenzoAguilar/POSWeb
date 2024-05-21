@@ -162,14 +162,14 @@ namespace Negocios.Clases
             }
         }
 
-        public (bool Success, string ErrorMessage) GuardarVenta(TblVentum objVenta)
+        public (bool Success, string ErrorMessage) GuardarVenta(VentaDTO objVenta)
         {
             try
             {
                 // Setear la hora actual
                 DateTime currentDate = DateTime.Now;
                 objVenta.FechaVenta = currentDate;
-                db.TblVenta.Add(objVenta);
+                //db.TblVenta.Add(objVenta);
                 db.SaveChanges();
                 return (true, ""); // Devolver éxito sin mensaje de error
             }

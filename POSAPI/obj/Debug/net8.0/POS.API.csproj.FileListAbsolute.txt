@@ -75,3 +75,4 @@ C:\Users\R\source\repos\POSWeb\POSAPI\obj\Debug\net8.0\refint\POS.API.dll
 C:\Users\R\source\repos\POSWeb\POSAPI\obj\Debug\net8.0\POS.API.pdb
 C:\Users\R\source\repos\POSWeb\POSAPI\obj\Debug\net8.0\POS.API.genruntimeconfig.cache
 C:\Users\R\source\repos\POSWeb\POSAPI\obj\Debug\net8.0\ref\POS.API.dll
+C:\Users\R\source\repos\POSWeb\POSAPI\bin\Debug\net8.0\Newtonsoft.Json.dll
