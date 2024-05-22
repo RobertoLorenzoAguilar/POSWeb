@@ -73,6 +73,7 @@ namespace Negocios.Clases
             try
             {
                 TblVentum objVenta = db.TblVenta
+                        .Include(e => e.TblVentaDetalles)  // se trae el detalle de venta ligado por el id 
                         .Include(e => e.IdClienteNavigation)
                         .Include(e => e.IdEmpleadoNavigation)
                         .Include(e => e.IdEmpleadoNavigation.IdSucursalNavigation)
@@ -90,6 +91,15 @@ namespace Negocios.Clases
                 objVentaDTO.NombreSucursal = objVenta.IdEmpleadoNavigation.IdSucursalNavigation.NombreSucursal;
                 objVentaDTO.FechaVenta = objVenta.FechaVenta;
                 objVentaDTO.TotalVenta = objVenta.TotalVenta;
+
+                foreach (var objProducto in objVenta.TblVentaDetalles)
+
+                {
+                    ProductoCantidad lstProductoCantidad = new();
+                    lstProductoCantidad.idProducto = objProducto.IdProducto;
+                    lstProductoCantidad.cantidad = objProducto.Cantidad;
+                    objVentaDTO.LstProducto.Add(lstProductoCantidad);
+                }
 
                 if (objVentaDTO != null)
                 {

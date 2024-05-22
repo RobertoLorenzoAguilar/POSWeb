@@ -26,13 +26,13 @@
                         </select>
                         <span asp-validation-for="IdEmpleado" class="text-danger"></span>
                     </div>
-                    
-       @*              <div class="form-group">
-                        <label asp-for="IdSucursal">Seleccione una Sucursal:</label>
-                        <select id="IdSucursal" class="form-control" asp-for="IdSucursal">
-                            <option value="">-- Seleccione una Sucursal --</option>
-                        </select>
-                        <span asp-validation-for="IdSucursal" class="text-danger"></span>
+
+                    @*              <div class="form-group">
+                    <label asp-for="IdSucursal">Seleccione una Sucursal:</label>
+                    <select id="IdSucursal" class="form-control" asp-for="IdSucursal">
+                    <option value="">-- Seleccione una Sucursal --</option>
+                    </select>
+                    <span asp-validation-for="IdSucursal" class="text-danger"></span>
                     </div> *@
 
                     <div class="form-group">
@@ -124,6 +124,21 @@
 
 
 @section Scripts {
+    @* el Orden es eimportante *@
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+    <script src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+    <!-- Incluir jQuery desde CDN -->
+    @* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> *@
+
+    <!-- Incluir jQuery DataTables desde CDN -->
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- Incluir jQuery DataTables desde CDN Iconos -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+
     <script>
         $(document).ready(function () {
 
@@ -191,6 +206,169 @@
             cargarOpciones(url, '#IdSucursal', 'una Sucursal');
 
 
+            //cargar tabla
+
+            var dataTable = $('#tblDetalleVenta').DataTable({
+                columns: [
+                    { data: 'Folio' },
+                    { data: 'Nombre' },
+                    { data: 'Descripcion' },
+                    { data: 'PrecioUnitario' },
+                    {
+                        data: 'Cantidad',
+                        title: 'Cantidad',
+                        render: function (data, type, row) {
+                            if (type === 'display') {
+                                // Mostrar un campo numérico y un botón para ajustar la cantidad
+                                return '<div class="input-group">' +
+                                    '<input type="number" id="txtCantidad" class="form-control txtCantidad" value="' + data + '" />' +
+                                    '</div>';
+                            } else {
+                                // En otras situaciones, devolver solo el valor de la cantidad
+                                return data;
+                            }
+                        }
+                    },
+                    { data: 'Retencion' }, // ISR
+                    { data: 'Traslado' },  // IVA
+                    { data: 'Subtotal' },
+                    { data: 'Total' },
+                    {
+                        data: 'Eliminar',
+                        title: 'Eliminar',
+                        "render": function (data, type, row) {
+                            // Renderizar los botones en la columna "Acciones"
+                            return `<button class="eliminarBtn" data-id="${row.idProducto}"><i class="fa fa-trash-alt"></i></button> `;
+                        }
+                    }
+
+                ]
+            });
+
+            //funcionalidad Autocompletado
+            $("#servicioProducto").autocomplete({
+                source: function (request, response) {
+                    // Realiza una llamada a tu API para obtener resultados
+                    $.ajax({
+                        url: 'http://localhost:5014/Productos/buscar',
+                        dataType: 'json',
+                        data: {
+                            term: request.term
+                        },
+                        success: function (data) {
+                            var parsedData = [];
+
+                            // Itera sobre los datos para construir las sugerencias
+                            $.each(data, function (index, item) {
+                                parsedData.push({
+                                    label: item.nombreProducto, // Texto visible en las sugerencias
+                                    value: item.idProducto, // Valor mostrado en el campo de entrada
+                                    id: item.id // Valor oculto asociado al elemento
+                                });
+                            });
+
+                            response(parsedData); // Devuelve los datos parseados para Autocomplete
+                        }
+                    });
+                },
+                minLength: 2, // Número mínimo de caracteres antes de mostrar sugerencias
+                select: function (event, ui) {
+                    $("#servicioProducto").val(ui.item.label); // Establece el valor visible en el campo de entrada
+                    $("#servicioProductoHidden").val(ui.item.value); // Establece el valor oculto en el campo oculto
+                    // Asegúrate de que 'return false;' esté deteniendo la propagación del evento si es necesario
+                    return false;
+                }
+            });
+
+            // funcionalidad agregar productos a la tabla de a // Manejar el evento clic del botón "Agregar Producto"
+            $("#btnAgregarProducto").click(function () {
+                // Obtener el valor del campo oculto (ID del producto)
+                var idProducto = $("#servicioProductoHidden").val();
+                //     // Hacer algo con el ID del producto, por ejemplo, enviarlo a través de AJAX
+                agregarProductoServicioTabla(idProducto);
+            });
+
+            function agregarProductoServicioTabla(idProducto, cantidadEdit = 1) {
+                if (idProducto) {
+                    // Realizar una solicitud AJAX para agregar el producto con el ID
+                    $.ajax({
+                        url: `http://localhost:5014/Producto/getProductoById?IdProducto=${idProducto}`,
+                        method: 'GET',
+                        data: {
+                            idProducto: idProducto
+                            // Puedes incluir más datos del formulario si es necesario
+                        },
+                        success: function (response) {
+                            // Manejar la respuesta del servidor si es necesario
+                            console.log("Producto agregado exitosamente:", response);
+                            // Puedes realizar más acciones después de agregar el producto
+                            // Obtener los valores del producto seleccionado
+                            var idProducto = $('#servicioProductoHidden').val();
+                            var folio = response.folioProducto;
+                            var nombreProducto = response.nombreProducto;
+                            var descProd = response.descripcionProducto;
+                            var precioUnitario = response.tblProductoSucursals[0].precio;
+                            let cantidad = cantidadEdit;                                                      
+                            var retencion = response.retencion;
+                            var traslado = response.traslado;
+                            var subtotal = 0;
+                            var total = 0;
+
+                            var totalCalculado = 0;
+                            //calculo fila total
+                            if (retencion == true) {
+                                totalCalculado = (precioUnitario * .30) + precioUnitario; //isr rentencion
+                                traslado = "N/A";
+                                retencion = "30%";
+                            } else if (traslado == true) {
+                                totalCalculado = precioUnitario * .16 + precioUnitario; //isr traslado
+                                retencion = "N/A";
+                                traslado = "16%";
+                            }
+
+                            // Crear un objeto con los datos del nuevo elemento a agregar al DataTable
+                            var newData = {
+                                idProducto: idProducto,
+                                Folio: folio,
+                                Nombre: nombreProducto,
+                                Descripcion: descProd,
+                                PrecioUnitario: precioUnitario,
+                                Cantidad: cantidad,
+                                Retencion: retencion,
+                                Traslado: traslado,
+                                Subtotal: cantidad * precioUnitario,
+                                Total: totalCalculado
+                            };
+
+                            // Agregar la nueva fila al DataTable
+                            var table = $('#tblDetalleVenta').DataTable();
+                            table.row.add(newData).draw(); // Agregar la fila y volver a dibujar el DataTable
+
+                            // Limpiar los campos de entrada después de agregar el producto
+                            $('#servicioProducto').val('');
+                            $('#servicioProductoHidden').val('');
+                            // calcularSumaTotal(); //calcular total
+                        },
+                        error: function (xhr, status, error) {
+                            // Manejar errores de la solicitud AJAX si ocurren
+                            console.error("Error al agregar producto:", error);
+                        }
+                    });
+                } else {
+                    console.log("No se ha seleccionado ningún producto.");
+                    // Puedes mostrar un mensaje de error o realizar otras acciones si no se seleccionó ningún producto
+                }
+            }
+
+            //evento para agregar a la tabla los prodctos
+            function cargarProductos() {
+                var lstProductos = @Html.Raw(Json.Serialize(Model.LstProducto));// obtenemos el listado de productos cantidad                
+                lstProductos.forEach(function (producto) {
+                    console.log(producto);
+                    agregarProductoServicioTabla(producto.idProducto, producto.cantidad);
+                });                
+            }
+            cargarProductos();
         });
     </script>
 }
