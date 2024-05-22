@@ -13,7 +13,7 @@
 
                 <div class="form-group">
                     <label>Cliente RFC:</label>
-                    <select id="selectCliente" class="form-control" asp-for="IdCliente">
+                    <select id="IdCliente" class="form-control" asp-for="IdCliente">
                         <option value="">-- Seleccione Cliente --</option>
                     </select>
                     <span asp-validation-for="IdCliente" class="text-danger"></span>
@@ -336,7 +336,7 @@
                         $.each(data, function (index, item) {
                             $(selector).append($('<option>').text(item.usuarioSistema).attr('value', item.idEmpleado));
                         });
-                    } else if (selector == '#selectCliente') {
+                    } else if (selector == '#IdCliente') {
                         $.each(data, function (index, item) {
                             $(selector).append($('<option>').text(item.rfcCliente)
                                 .attr('value', item.idCliente)
@@ -367,7 +367,7 @@
         cargarOpciones('http://localhost:5014/Empleados', '#selectEmpleado', 'Empleado');
 
         // Cargar clientes
-        cargarOpciones('http://localhost:5014/Clientes', '#selectCliente', 'Cliente');
+        cargarOpciones('http://localhost:5014/Clientes', '#IdCliente', 'Cliente');
         //termina parte peticion
 
         $('#selectEmpleado').change(function () {
@@ -381,7 +381,7 @@
             cargarOpciones(url, '#selectSucursal', 'una Sucursal');
 
         });
-        $('#selectCliente').change(function () {
+        $('#IdCliente').change(function () {
             // Obtener el descuento del cliente seleccionado
             let selectedOption = $(this).find('option:selected');
             let descuento = selectedOption.data('descuento');
