@@ -336,6 +336,7 @@ if (app.Environment.IsDevelopment())
 12) Validaciones de Flujo en el front-end. Ejemplo: antes de agregar artículos, traer el descuento del cliente.
 13) Validaciones de detalles de venta en el back-end.
 14) Que no permita numeros como 0 o negativos en la cantidad de productos
+15) Poder agregar productos por numero de folio o id en la tabla de venta
 
 # BUENO POR HACER:
 1) Agreger pruebas unitarias
