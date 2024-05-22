@@ -177,10 +177,13 @@
                                     .attr('data-descuento', item.descuento));
                             });
                             // Obtener el valor de IdEmpresa desde el modelo
-                            var IdEmpleadoValue = '@Model.IdCliente'; // Obtener el valor del modelo en Razor
+                            var IdClienteValue = '@Model.IdCliente'; // Obtener el valor del modelo en Razor
 
                             // Seleccionar automáticamente la opción correspondiente en el select
-                            $('#IdCliente').val(IdEmpleadoValue);
+                            $('#IdCliente').val(IdClienteValue);
+
+
+                            cargarDescuentoCliente();
                         }
                     },
                     error: function () {
@@ -308,7 +311,7 @@
                             var nombreProducto = response.nombreProducto;
                             var descProd = response.descripcionProducto;
                             var precioUnitario = response.tblProductoSucursals[0].precio;
-                            let cantidad = cantidadEdit;                                                      
+                            let cantidad = cantidadEdit;
                             var retencion = response.retencion;
                             var traslado = response.traslado;
                             var subtotal = 0;
@@ -317,11 +320,17 @@
                             var totalCalculado = 0;
                             //calculo fila total
                             if (retencion == true) {
-                                totalCalculado = (precioUnitario * .30) + precioUnitario; //isr rentencion
+                                impuesto = .30; // ISR rentencion
+                                totalSinImpuesto = (precioUnitario * cantidad)
+                                impuesto = totalSinImpuesto * impuesto;
+                                totalCalculado = totalSinImpuesto + impuesto;                                
                                 traslado = "N/A";
                                 retencion = "30%";
                             } else if (traslado == true) {
-                                totalCalculado = precioUnitario * .16 + precioUnitario; //isr traslado
+                                impuesto = .16; // IVA rentencion
+                                totalSinImpuesto = (precioUnitario * cantidad)
+                                impuesto = totalSinImpuesto * impuesto;
+                                totalCalculado = totalSinImpuesto + impuesto;
                                 retencion = "N/A";
                                 traslado = "16%";
                             }
@@ -347,7 +356,7 @@
                             // Limpiar los campos de entrada después de agregar el producto
                             $('#servicioProducto').val('');
                             $('#servicioProductoHidden').val('');
-                            // calcularSumaTotal(); //calcular total
+                            calcularSumaTotal(); //calcular total
                         },
                         error: function (xhr, status, error) {
                             // Manejar errores de la solicitud AJAX si ocurren
@@ -359,16 +368,90 @@
                     // Puedes mostrar un mensaje de error o realizar otras acciones si no se seleccionó ningún producto
                 }
             }
-
             //evento para agregar a la tabla los prodctos
             function cargarProductos() {
-                var lstProductos = @Html.Raw(Json.Serialize(Model.LstProducto));// obtenemos el listado de productos cantidad                
+                var lstProductos = @Html.Raw(Json.Serialize(Model.LstProducto));// obtenemos el listado de productos cantidad
                 lstProductos.forEach(function (producto) {
                     console.log(producto);
                     agregarProductoServicioTabla(producto.idProducto, producto.cantidad);
-                });                
+                });
             }
             cargarProductos();
+
+            // cargar el descuento del cliente
+            $('#IdCliente').change(function () {
+                cargarDescuentoCliente();
+            });
+
+            //cada vez que el cliente cambia se renueva el tipo de descuento
+            function cargarDescuentoCliente() {
+                // Obtener el descuento del cliente seleccionado
+                // Obtener la opción seleccionada
+                let selectedOption = $("#IdCliente").find('option:selected');
+                let descuento = selectedOption.data('descuento');
+                $("#descuentos").val(descuento);;
+
+            }
+
+            // Función para calcular la suma de la columna "Total"
+            function calcularSumaTotal() {
+                var tabla = document.getElementById('tblDetalleVenta');
+
+                // Obtener todas las filas de la tabla (excluyendo la fila de encabezado)
+                var filas = tabla.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+                let subTotalPagoVenta = 0; //total por articulo
+                let TotalPagoVenta = 0; //total por articulo
+
+                // Iterar sobre cada fila de la tabla
+                Array.from(filas).forEach(function (fila) {
+                    var celdas = fila.getElementsByTagName('td');
+                    const cantidadElemento = celdas[4].querySelector('div.input-group .txtCantidad').value;
+                    // var total = parseFloat(celdas[3].textContent) * cantidadElemento;
+                    var subtotal = parseFloat(celdas[3].textContent) * cantidadElemento; // Columna de total
+                    subTotalPagoVenta = subTotalPagoVenta + subtotal;
+                    var total = parseFloat(celdas[8].textContent); // Columna de total
+                    TotalPagoVenta = TotalPagoVenta + total;
+                });
+
+                var descuento = $("#descuentos").val();
+                $("#subtotal").val(subTotalPagoVenta);
+                // $("#totalVenta").val(TotalPagoVenta - descuentos);
+                $("#totalVenta").val(TotalPagoVenta - descuento);
+            }
+
+            // Manejar el cambio de cantidad
+            $(document).on('change', '#txtCantidad', function () {
+                var cantidad = $(this).val();
+                if (!isNaN(cantidad) && cantidad !== '') {
+                    var cantidadParseada = parseInt(cantidad, 10);
+                    if (!isNaN(cantidadParseada)) {
+                        var $fila = $(this).closest('tr');
+                        var indiceFila = dataTable.row($fila).index();
+                        var datosFila = dataTable.row(indiceFila).data();
+                        datosFila.Cantidad = cantidadParseada;
+                        datosFila.Subtotal = datosFila.PrecioUnitario * cantidadParseada;
+                        // calculo retencion tralsado
+                        var totalCalculado = 0;
+                        //calculo fila total
+                        if (datosFila.Retencion != "N/A") {
+                            var impuesto = (datosFila.PrecioUnitario * datosFila.Cantidad) * .30;
+                            totalCalculado = impuesto + (datosFila.PrecioUnitario * datosFila.Cantidad); //isr traslado
+                        } else if (datosFila.Traslasado != "N/A") {
+                            var impuesto = (datosFila.PrecioUnitario * datosFila.Cantidad) * .16;
+                            totalCalculado = impuesto + (datosFila.PrecioUnitario * datosFila.Cantidad); //isr traslado
+                        }
+                        datosFila.Total = totalCalculado;  //retencion o traslado
+                        dataTable.row(indiceFila).data(datosFila).invalidate();
+                        calcularSumaTotal(); //recalcular
+                    } else {
+                        alert("Por favor, introduce un número válido.");
+                    }
+                } else {
+                    alert("Por favor, introduce un número válido.");
+                }
+            });
+
         });
     </script>
 }
