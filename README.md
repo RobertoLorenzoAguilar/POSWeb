@@ -333,6 +333,25 @@ if (app.Environment.IsDevelopment())
 <img src="Images/flujo_venta.PNG" alt="Logo">
 
 
+# Validaciones en el ViewModel
+<img src="Images/validaciones_modelo.PNG" alt="Logo">
+
+# Pantallas
+-  Empresa
+  <img src="Images/empresa.PNG" alt="Logo">
+-  Sucursal
+  <img src="Images/sucursal.PNG" alt="Logo">
+-  Empleado "Usuario del Sistema"
+  <img src="Images/empleado.PNG" alt="Logo">
+-  Producto
+  <img src="Images/producto.PNG" alt="Logo">
+-  Precio Producto Sucursal
+  <img src="Images/precio_producto.PNG" alt="Logo">
+-  Cliente
+  <img src="Images/cliente.PNG" alt="Logo">
+-  Venta
+  <img src="Images/venta_vista.PNG" alt="Logo">
+
 # POR HACER:
 1) Acomodar los script en carpetas separadas.
 2) Crear el modelo relacional.
