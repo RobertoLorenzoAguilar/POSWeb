@@ -322,6 +322,17 @@ if (app.Environment.IsDevelopment())
 # Generando Venta
 <img src="Images/venta.PNG" alt="Logo">
 
+
+
+# Mejoras Agregando Control de errores
+<img src="Images/controler_cliente_manejo_error.PNG" alt="Logo">
+<img src="Images/front_manejo_eror.PNG" alt="Logo">
+
+
+# Flujo para Generar una Venta
+<img src="Images/flujo_venta.PNG" alt="Logo">
+
+
 # POR HACER:
 1) Acomodar los script en carpetas separadas.
 2) Crear el modelo relacional.
