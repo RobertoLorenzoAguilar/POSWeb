@@ -119,7 +119,7 @@ namespace WebContratos.Controllers
 
         [HttpPut]
         [Route("Ventas/actualizar")]
-        public IActionResult ActualizarVenta([FromBody] TblVentum Venta)
+        public IActionResult ActualizarVenta([FromBody] VentaDTO Venta)
         {
             try
             {

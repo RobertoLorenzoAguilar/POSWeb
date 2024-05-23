@@ -5,7 +5,7 @@ namespace Negocios.Interfaces
     public interface IVenta
     {
 
-        (bool Success, string ErrorMessage) ActualizarVenta(TblVentum updatedVenta);
+        (bool Success, string ErrorMessage) ActualizarVenta(VentaDTO updatedVenta);
         (bool Success, string ErrorMessage) EliminarVenta(int IdVenta);
         (VentaDTO Venta, bool Success, string ErrorMessage) GetVenta(int IdVenta);        
         (List<VentaDTO> Ventas, bool Success, string ErrorMessage) GetVentas();

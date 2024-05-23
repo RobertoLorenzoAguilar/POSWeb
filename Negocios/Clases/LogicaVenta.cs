@@ -12,22 +12,38 @@ namespace Negocios.Clases
             this.db = db;
 
         }
-        public (bool Success, string ErrorMessage) ActualizarVenta(TblVentum updatedVenta)
+        public (bool Success, string ErrorMessage) ActualizarVenta(VentaDTO updatedVenta)
         {
             try
             {
-                // Buscar el Venta existente en la base de datos
-                var existingVenta = db.TblVenta.Find(updatedVenta.IdVenta);
+                // Buscar la Venta existente en la base de datos
+                var existingVenta = db.TblVenta
+                        .FirstOrDefault(x => x.IdVenta == updatedVenta.IdVenta && x.Eliminado == false);
 
                 if (existingVenta != null)
                 {
-                    // Se remueve la instancia del contexto para poder eliminarla
-                    db.TblVenta.Remove(existingVenta);
-                    // Adjuntar el Venta actualizado al contexto de Entity Framework
-                    db.TblVenta.Attach(updatedVenta);
+                    // Actualizar las propiedades de la entidad existente
+                    existingVenta.TipoVenta = updatedVenta.TipoVenta;
+                    existingVenta.IdCliente = updatedVenta.IdCliente;
+                    existingVenta.IdEmpleado = updatedVenta.IdEmpleado;
+                    //existingVenta.FechaVenta = updatedVenta.FechaVenta;
+                    existingVenta.TotalVenta = updatedVenta.TotalVenta;
 
-                    // Marcar la entidad como modificada
-                    db.Entry(updatedVenta).State = EntityState.Modified;
+                    // Eliminar los detalles de la venta existentes
+                    var lstDetallesVenta = db.TblVentaDetalles
+                        .Where(x => x.IdVenta == updatedVenta.IdVenta && x.Eliminado == false).ToList();
+
+                    db.TblVentaDetalles.RemoveRange(lstDetallesVenta);
+
+                    // Guardar los nuevos detalles
+                    foreach (var objCantIDProd in updatedVenta.LstProducto)
+                    {
+                        TblVentaDetalle objDetalle = new TblVentaDetalle();
+                        objDetalle.IdVenta = updatedVenta.IdVenta;
+                        objDetalle.Cantidad = objCantIDProd.cantidad;
+                        objDetalle.IdProducto = objCantIDProd.idProducto;
+                        db.TblVentaDetalles.Add(objDetalle);
+                    }
 
                     // Guardar los cambios en la base de datos
                     db.SaveChanges();
@@ -45,6 +61,7 @@ namespace Negocios.Clases
                 return (false, $"Error al actualizar el Venta: {ex.Message}");
             }
         }
+
         public (bool Success, string ErrorMessage) EliminarVenta(int IdVenta)
         {
             try
@@ -178,7 +195,7 @@ namespace Negocios.Clases
             {
 
                 // Setear la hora actual
-                DateTime currentDate = DateTime.Now;             
+                DateTime currentDate = DateTime.Now;
                 //  Guardamos primero la venta y recuperamos el ig
                 TblVentum objTblVenta = new TblVentum();
                 objTblVenta.IdVenta = objVentaDTO.IdVenta;
@@ -196,13 +213,13 @@ namespace Negocios.Clases
                 foreach (var objCantIDProd in objVentaDTO.LstProducto)
                 {
                     TblVentaDetalle objDetalle = new TblVentaDetalle();
-                    objDetalle.IdVenta = IdVenta;                   
+                    objDetalle.IdVenta = IdVenta;
                     objDetalle.Cantidad = objCantIDProd.cantidad;
                     objDetalle.IdProducto = objCantIDProd.idProducto;
                     db.TblVentaDetalles.Add(objDetalle);
                     db.SaveChanges(); //    guardamos a venta
-                }               
-                
+                }
+
                 return (true, ""); // Devolver éxito sin mensaje de error
             }
             catch (DbUpdateException ex)

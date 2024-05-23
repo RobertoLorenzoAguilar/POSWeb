@@ -595,7 +595,7 @@
     "Parameters": [
       {
         "Name": "Venta",
-        "Type": "Datos.Models.TblVentum",
+        "Type": "Negocios.DTO.VentaDTO",
         "IsRequired": true
       }
     ],

@@ -7,7 +7,7 @@
     <div class=" card-body text-primary">
         <div class="row">
             <div class="col-md-12">
-                <form asp-action="Edit">
+                <form id="createVentaId" asp-action="Edit">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="hidden" asp-for="IdVenta" />
 
@@ -25,7 +25,7 @@
                             <option value="">-- Seleccione Empleado --</option>
                         </select>
                         <span asp-validation-for="IdEmpleado" class="text-danger"></span>
-                    </div>                   
+                    </div>
 
                     <div class="form-group">
                         <label>Tipo Venta:</label>
@@ -100,10 +100,14 @@
                                 <input asp-for="TotalVenta" type="text" class="form-control form-control-sm" id="totalVenta" readonly>
                             </div>
                         </div>
+
+                        @* con esto manejare el listado de enteros cantidad y producto *@
+                        <input type="hidden" name="LstProducto" id="LstProducto" value="">
+
                     </div>
                     <div class=" card-footer text-center">
                         <div class="form-group">
-                            <input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
+                            <input type="submit" id="btnVenta" value="Guardar" class="btn btn-outline-primary btn-sm" />
                             <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver a la lista</a>
                         </div>
                     </div>
@@ -299,7 +303,8 @@
                             console.log("Producto agregado exitosamente:", response);
                             // Puedes realizar más acciones después de agregar el producto
                             // Obtener los valores del producto seleccionado
-                            var idProducto = $('#servicioProductoHidden').val();
+                            // var idProducto = $('#servicioProductoHidden').val(response.idProducto);
+                            var idProducto = (response.idProducto);
                             var folio = response.folioProducto;
                             var nombreProducto = response.nombreProducto;
                             var descProd = response.descripcionProducto;
@@ -316,7 +321,7 @@
                                 impuesto = .30; // ISR rentencion
                                 totalSinImpuesto = (precioUnitario * cantidad)
                                 impuesto = totalSinImpuesto * impuesto;
-                                totalCalculado = totalSinImpuesto + impuesto;                                
+                                totalCalculado = totalSinImpuesto + impuesto;
                                 traslado = "N/A";
                                 retencion = "30%";
                             } else if (traslado == true) {
@@ -374,6 +379,7 @@
             // cargar el descuento del cliente
             $('#IdCliente').change(function () {
                 cargarDescuentoCliente();
+                calcularSumaTotal();  //volver a calcular los totales
             });
 
             //cada vez que el cliente cambia se renueva el tipo de descuento
@@ -381,7 +387,7 @@
                 // Obtener el descuento del cliente seleccionado
                 // Obtener la opción seleccionada
                 let selectedOption = $("#IdCliente").find('option:selected');
-                let descuento = selectedOption.data('descuento');                
+                let descuento = selectedOption.data('descuento');
                 $("#descuentos").val(descuento);;
 
             }
@@ -444,13 +450,57 @@
                 } else {
                     alert("Por favor, introduce un número válido.");
                 }
-            });
-            // // recalcular el total
-            // $(document).on('change', '.txtCantidad', function () {
-            //     calcularSumaTotal();
-            // });
-           // calcularSumaTotal()
+            });           
         });
+
+        // Listeners
+        document.addEventListener("DOMContentLoaded", function () {
+            var btnVenta = document.getElementById("btnVenta");
+
+            btnVenta.addEventListener("click", function (event) {
+                // Code to execute before the form submission
+                extraerIdProductosVenta();
+            });
+
+
+            //  recorrer tabla para traer los valores de los id del producto
+            function extraerIdProductosVenta() {
+                var tabla = document.getElementById('tblDetalleVenta');
+                // Obtener todas las filas de la tabla (excluyendo la fila de encabezado)
+                var filas = tabla.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+                let listIdsProduct = [];
+
+                Array.from(filas).forEach(function (fila) {
+                    var celdas = fila.getElementsByTagName('td');
+                    let idProd = parseInt(celdas[9].querySelector('.eliminarBtn').getAttribute('data-id'));
+                    const cantidadElemento = parseInt(celdas[4].querySelector('div.input-group .txtCantidad').value);
+
+                    let productoCantidad = {
+                        idProducto: idProd,
+                        cantidad: cantidadElemento
+                    };
+
+                    listIdsProduct.push(productoCantidad);
+                });
+
+                // Luego, convierte la lista de productos a JSON y establece el valor del campo oculto
+                document.getElementById('LstProducto').value = JSON.stringify(listIdsProduct);
+
+                // Obtener el formulario
+                var formulario = document.getElementById('createVentaId');
+
+                // Crear un objeto FormData con el formulario
+                var formData = new FormData(formulario);
+
+                // Mostrar los datos en la consola
+                for (var pair of formData.entries()) {
+                    console.log(pair[0] + ': ' + pair[1]);
+                }
+
+            }
+        });
+     
     </script>
 }
 

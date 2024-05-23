@@ -115,6 +115,14 @@ namespace POS.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Deserialización manual verificar problemas que puedan afectar este comportamiento
+                var listaProductosEntry = ModelState["LstProducto"];
+                if (listaProductosEntry != null && listaProductosEntry.RawValue != null)
+                {
+                    var listaProductosJson = listaProductosEntry.RawValue.ToString();
+                    // Aquí puedes continuar con la deserialización de listaProductosJson
+                    Venta.LstProducto = JsonConvert.DeserializeObject<List<ProductoCantidad>>(listaProductosJson);
+                }
 
 
                 var json = JsonConvert.SerializeObject(Venta);
