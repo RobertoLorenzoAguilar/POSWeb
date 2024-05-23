@@ -70,8 +70,10 @@ namespace POS.Web.Controllers
                 }
                 else
                 {
+                    // Leer el contenido de la respuesta de error
+                    var errorContent = await response.Content.ReadAsStringAsync();
                     // Manejar el caso de error en la solicitud POST, por ejemplo, mostrando un mensaje de error.
-                    ModelState.AddModelError(string.Empty, "Error al crear el Empresa.");
+                    ModelState.AddModelError(string.Empty, errorContent);
                 }
             }
             return View(Empresa);
