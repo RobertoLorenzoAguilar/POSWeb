@@ -1,8 +1,8 @@
-﻿@model IEnumerable<EmpleadoViewModel>
+﻿@model IEnumerable<ProductoSucursalViewModel>
 
 <div class="card text-primary">
     <div class="card-header text-center">
-        <h5>Lista de Empleados</h5>
+        <h5>Lista de Precios Producto Sucursal</h5>
     </div>
     <div class="card-body">
         <div class="row">
@@ -18,29 +18,14 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        Nombre Empleado
+                                        Nombre Sucursal
                                     </th>
                                     <th>
-                                        Apellido Paterno
+                                        Nombre Producto
                                     </th>
                                     <th>
-                                        Apellido Materno
-                                    </th>
-                                    <th>
-                                        Usuario
-                                    </th>
-                                    <th>
-                                        Contraseña
-                                    </th>
-                                    <th>
-                                        Número Seguro Social
-                                    </th>
-                                    <th>
-                                        TipoUsuario
-                                    </th>
-                                    <th>
-                                        Sucursal
-                                    </th>
+                                        Precio
+                                    </th>                                   
 
                                     <th>Acciones</th>
                                 </tr>
@@ -49,35 +34,20 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.NombreEmpleado)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ApellidoPaterno)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ApellidoMaterno)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.UsuarioSistema)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ContrasenaSistema)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Nss)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TipoUsuario)
-                                        </td>
+                                        
                                         <td>
                                             @Html.DisplayFor(modelItem => item.NombreSucursal)
                                         </td>
-
                                         <td>
-                                            <a asp-action="Edit" asp-route-id="@item.IdEmpleado" class="btn btn-outline-warning btn-sm">Editar</a>
-                                            <a asp-action="Details" asp-route-id="@item.IdEmpleado" class="btn btn-outline-info btn-sm">Detalles</a>
-                                            <a asp-action="Delete" asp-route-id="@item.IdEmpleado" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                                            @Html.DisplayFor(modelItem => item.NombreProducto)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Precio)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.IdProducto" class="btn btn-outline-warning btn-sm">Editar</a>
+                                            <a asp-action="Details" asp-route-id="@item.IdProducto" class="btn btn-outline-info btn-sm">Detalles</a>
+                                            <a asp-action="Delete" asp-route-id="@item.IdProducto" class="btn btn-outline-danger btn-sm">Eliminar</a>
                                         </td>
                                     </tr>
                                 }
@@ -89,6 +59,6 @@
         </div>
     </div>
     <div class="card-footer text-muted text-center">
-        Crud Productos
+        Crud Producto Sucursal
     </div>
 </div>

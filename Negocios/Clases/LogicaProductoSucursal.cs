@@ -17,12 +17,14 @@ namespace Negocios.Clases
             try
             {
                 // Buscar el ProductoSucursal existente en la base de datos
-                var existingProductoSucursal = db.TblProductoSucursals.Find(updatedProductoSucursal.IdProducto);
+                var existingProductoSucursal = db.TblProductoSucursals.Find(updatedProductoSucursal.IdProducto, updatedProductoSucursal.IdSucursal);
+                
+
 
                 if (existingProductoSucursal != null)
                 {
                     // Se remueve la instancia del contexto para poder eliminarla
-                    db.TblProductoSucursals.Remove(existingProductoSucursal);  
+                    db.TblProductoSucursals.Remove(existingProductoSucursal);
                     // Adjuntar el ProductoSucursal actualizado al contexto de Entity Framework
                     db.TblProductoSucursals.Attach(updatedProductoSucursal);
 
@@ -76,7 +78,9 @@ namespace Negocios.Clases
         {
             try
             {
-                TblProductoSucursal ProductoSucursal = db.TblProductoSucursals.Include(e => e.IdSucursalNavigation)
+                TblProductoSucursal ProductoSucursal = db.TblProductoSucursals
+                    .Include(e => e.IdSucursalNavigation)
+                    .Include(e => e.IdProductoNavigation)
                                        .FirstOrDefault(x => x.IdProducto == IdProductoSucursal && x.Eliminado == false);
 
 
@@ -86,7 +90,7 @@ namespace Negocios.Clases
                 objProductoSucursalDto.IdSucursal = ProductoSucursal.IdSucursal;
                 objProductoSucursalDto.NombreSucursal = ProductoSucursal.IdSucursalNavigation.NombreSucursal;
                 objProductoSucursalDto.Precio = ProductoSucursal.Precio;
-                              
+
 
                 if (ProductoSucursal != null)
                 {
@@ -147,6 +151,7 @@ namespace Negocios.Clases
                 List<TblProductoSucursal> ProductoSucursals = db.TblProductoSucursals
                                               .Where(x => x.Eliminado == false)
                                               .Include(e => e.IdSucursalNavigation) // Incluir la propiedad de navegación IdEmpresaNavigation
+                                              .Include(e => e.IdProductoNavigation)
                                               .ToList();
 
 

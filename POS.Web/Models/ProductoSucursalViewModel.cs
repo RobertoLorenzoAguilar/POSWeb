@@ -10,7 +10,8 @@
 
         public bool Eliminado { get; set; }        
         
-        public string? NombreSucursal { get; set; } 
+        public string? NombreSucursal { get; set; }
+        public string? NombreProducto { get; set; }
 
     }
 }

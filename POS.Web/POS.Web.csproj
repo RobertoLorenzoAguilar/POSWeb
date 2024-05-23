@@ -11,9 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\infraestructure\" />
-    <Folder Include="Views\infraestructure\styles\" />
     <Folder Include="Views\infraestructure\scripts\" />
+    <Folder Include="Views\infraestructure\styles\" />
   </ItemGroup>
 
 </Project>

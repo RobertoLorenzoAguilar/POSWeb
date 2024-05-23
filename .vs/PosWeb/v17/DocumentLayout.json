@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\R\\source\\repos\\POSWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|c:\\users\\r\\source\\repos\\posweb\\pos.web\\views\\venta\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|solutionrelative:pos.web\\views\\venta\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|c:\\users\\r\\source\\repos\\posweb\\pos.web\\controllers\\productosucursalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|solutionrelative:pos.web\\controllers\\productosucursalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|c:\\users\\r\\source\\repos\\posweb\\pos.web\\views\\venta\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|solutionrelative:pos.web\\views\\venta\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|c:\\users\\r\\source\\repos\\posweb\\pos.web\\models\\productosucursalviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|solutionrelative:pos.web\\models\\productosucursalviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|c:\\users\\r\\source\\repos\\posweb\\pos.web\\controllers\\ventacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|solutionrelative:pos.web\\controllers\\ventacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|c:\\users\\r\\source\\repos\\posweb\\pos.web\\controllers\\sucursalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|solutionrelative:pos.web\\controllers\\sucursalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|c:\\users\\r\\source\\repos\\posweb\\pos.web\\views\\venta\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|solutionrelative:pos.web\\views\\venta\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|c:\\users\\r\\source\\repos\\posweb\\pos.web\\views\\productosucursal\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|solutionrelative:pos.web\\views\\productosucursal\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{02B71FD1-7228-476C-87B2-6A857C210F92}|Negocios\\Negocios.csproj|c:\\users\\r\\source\\repos\\posweb\\negocios\\clases\\logicaventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02B71FD1-7228-476C-87B2-6A857C210F92}|Negocios\\Negocios.csproj|solutionrelative:negocios\\clases\\logicaventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|c:\\users\\r\\source\\repos\\posweb\\pos.web\\views\\productosucursal\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FB1D6F07-A12A-4DAD-9C1D-E496EF964899}|POS.Web\\POS.Web.csproj|solutionrelative:pos.web\\views\\productosucursal\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,70 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "VentaController.cs",
-              "DocumentMoniker": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Controllers\\VentaController.cs",
-              "RelativeDocumentMoniker": "POS.Web\\Controllers\\VentaController.cs",
-              "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Controllers\\VentaController.cs",
-              "RelativeToolTip": "POS.Web\\Controllers\\VentaController.cs",
-              "ViewState": "AQIAAD0AAAAAAAAAAAAEwFMAAAAUAAAA",
+              "Title": "SucursalController.cs",
+              "DocumentMoniker": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Controllers\\SucursalController.cs",
+              "RelativeDocumentMoniker": "POS.Web\\Controllers\\SucursalController.cs",
+              "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Controllers\\SucursalController.cs",
+              "RelativeToolTip": "POS.Web\\Controllers\\SucursalController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T00:09:56.19Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Views\\Venta\\Create.cshtml",
-              "RelativeDocumentMoniker": "POS.Web\\Views\\Venta\\Create.cshtml",
-              "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Views\\Venta\\Create.cshtml",
-              "RelativeToolTip": "POS.Web\\Views\\Venta\\Create.cshtml",
-              "ViewState": "AQIAAKkAAAAAAAAAAAAUwMEAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-23T00:12:28.689Z",
+              "WhenOpened": "2024-05-23T12:35:51.845Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Views\\Venta\\Index.cshtml",
-              "RelativeDocumentMoniker": "POS.Web\\Views\\Venta\\Index.cshtml",
-              "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Views\\Venta\\Index.cshtml",
-              "RelativeToolTip": "POS.Web\\Views\\Venta\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Views\\ProductoSucursal\\Edit.cshtml",
+              "RelativeDocumentMoniker": "POS.Web\\Views\\ProductoSucursal\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Views\\ProductoSucursal\\Edit.cshtml",
+              "RelativeToolTip": "POS.Web\\Views\\ProductoSucursal\\Edit.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-23T00:03:38.056Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Views\\Venta\\Details.cshtml",
-              "RelativeDocumentMoniker": "POS.Web\\Views\\Venta\\Details.cshtml",
-              "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Views\\Venta\\Details.cshtml",
-              "RelativeToolTip": "POS.Web\\Views\\Venta\\Details.cshtml",
-              "ViewState": "AQIAAF0AAAAAAAAAAAAUwHUAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-23T00:03:35.736Z",
+              "WhenOpened": "2024-05-23T12:35:17.105Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "LogicaVenta.cs",
-              "DocumentMoniker": "C:\\Users\\R\\source\\repos\\POSWeb\\Negocios\\Clases\\LogicaVenta.cs",
-              "RelativeDocumentMoniker": "Negocios\\Clases\\LogicaVenta.cs",
-              "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\Negocios\\Clases\\LogicaVenta.cs",
-              "RelativeToolTip": "Negocios\\Clases\\LogicaVenta.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAYwDwAAAAQAAAA",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Views\\ProductoSucursal\\Index.cshtml",
+              "RelativeDocumentMoniker": "POS.Web\\Views\\ProductoSucursal\\Index.cshtml",
+              "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Views\\ProductoSucursal\\Index.cshtml",
+              "RelativeToolTip": "POS.Web\\Views\\ProductoSucursal\\Index.cshtml",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAEwD0AAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-23T12:34:48.133Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductoSucursalController.cs",
+              "DocumentMoniker": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Controllers\\ProductoSucursalController.cs",
+              "RelativeDocumentMoniker": "POS.Web\\Controllers\\ProductoSucursalController.cs",
+              "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Controllers\\ProductoSucursalController.cs",
+              "RelativeToolTip": "POS.Web\\Controllers\\ProductoSucursalController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEkAAABfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-22T01:49:22.446Z",
+              "WhenOpened": "2024-05-23T12:34:35.595Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductoSucursalViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Models\\ProductoSucursalViewModel.cs",
+              "RelativeDocumentMoniker": "POS.Web\\Models\\ProductoSucursalViewModel.cs",
+              "ToolTip": "C:\\Users\\R\\source\\repos\\POSWeb\\POS.Web\\Models\\ProductoSucursalViewModel.cs",
+              "RelativeToolTip": "POS.Web\\Models\\ProductoSucursalViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-23T12:35:57.659Z",
               "EditorCaption": ""
             }
           ]

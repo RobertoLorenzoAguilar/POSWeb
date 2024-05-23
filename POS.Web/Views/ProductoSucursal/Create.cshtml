@@ -1,61 +1,34 @@
-﻿@model EmpleadoViewModel
+﻿@model ProductoSucursalViewModel
 
 <div class=" card text-primary">
     <div class="card-header text-center">
-        <h5>Crear Empleado</h5>
+        <h5>Crear Relación Producto Precio Sucursal</h5>
     </div>
     <div class=" card-body text-center">
         <div class=" col-md-12">
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label></label>
-                    <input asp-for="NombreEmpleado" class="form-control" placeholder="Nombre Empleado">
-                    <span asp-validation-for="NombreEmpleado" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label></label>
-                    <input asp-for="ApellidoPaterno" class="form-control" placeholder="Apellido Paterno">
-                    <span asp-validation-for="ApellidoPaterno" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label></label>
-                    <input asp-for="ApellidoMaterno" class="form-control" placeholder="Apellido Materno">
-                    <span asp-validation-for="ApellidoMaterno" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label></label>
-                    <input asp-for="UsuarioSistema" class="form-control" placeholder="Usuario">
-                    <span asp-validation-for="UsuarioSistema" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label></label>
-                    <input asp-for="ContrasenaSistema" class="form-control" placeholder="Contraseña">
-                    <span asp-validation-for="ContrasenaSistema" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label></label>
-                    <input asp-for="Nss" class="form-control" placeholder="Número Seguro Social">
-                    <span asp-validation-for="Nss" class="text-danger"></span>
-                </div>
 
                 <div class="form-group">
-                    <label></label>
-                    <select  class="form-control" asp-for="TipoUsuario">
-                        <option value="">-- Seleccione un Tipo de Usuario --</option>
-                        <option value="Asesor de Venta">Asesor de Venta</option>
-                        <option value="Facturista">Facturista</option>
-                        <option value="Gerente">Gerente</option>
-                    </select>
-                    <span asp-validation-for="TipoUsuario" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="IdSucursal">Seleccione una Sucursal:</label>
-                    <select id="selectSucursal" class="form-control" asp-for="IdSucursal">
-                        <option value="">-- Seleccione una Sucursal --</option>
+                    <label asp-for="IdSucursal">Nombre Sucursal</label>
+                    <select id="IdSucursal" class="form-control" asp-for="IdSucursal">
+                        <option value=""></option>
                     </select>
                     <span asp-validation-for="IdSucursal" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="IdProducto">Nombre Producto</label>
+                    <select id="IdProducto" class="form-control" asp-for="IdProducto">
+                        <option value=""></option>
+                    </select>
+                    <span asp-validation-for="IdProducto" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label></label>
+                    <input asp-for="Precio" class="form-control" placeholder="Precio Producto">
+                    <span asp-validation-for="Precio" class="text-danger"></span>
                 </div>
 
 
@@ -74,27 +47,37 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            // Realizar la petición AJAX al servidor
-            $.ajax({
-                url: 'http://localhost:5014/Sucursals', // URL del endpoint para obtener las empresas
-                type: 'GET',
-                dataType: 'json',
-                success: function (data) {
-                    // Limpiar opciones actuales del select
-                    $('#selectSucursal').empty();
+            function cargarOpciones(url, selector, optionText) {
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        // Limpiar opciones actuales del selector
+                        $(selector).empty();
+                        // Agregar opción inicial
+                        $(selector).append($('<option>').text('-- Seleccione ' + optionText + ' --').attr('value', ''));
+                        $.each(data, function (index, item) {
+                            if (selector == '#IdSucursal') {
+                                $(selector).append($('<option>').text(item.nombreSucursal).attr('value', item.idSucursal));
+                            } else if (selector == '#IdProducto') {
+                                $(selector).append($('<option>').text(item.nombreProducto).attr('value', item.idProducto));
+                            }
+                        });
+                    },
+                    error: function () {
+                        console.error('Error al cargar ' + optionText.toLowerCase() + '.');
+                    }
+                });
+            }
 
-                    // Agregar opción inicial
-                    $('#selectSucursal').append($('<option>').text('-- Seleccione una Sucursal --').attr('value', ''));
+            // Cargar Sucursales
+            cargarOpciones('http://localhost:5014/Sucursals', '#IdSucursal', 'Sucursal');
 
-                    // Iterar sobre los datos recibidos y agregar opciones al select
-                    $.each(data, function (index, empleado) {
-                        $('#selectSucursal').append($('<option>').text(empleado.nombreSucursal).attr('value', empleado.idSucursal));
-                    });
-                },
-                error: function () {
-                    console.error('Error al cargar las Sucursales.');
-                }
-            });
+            // Cargar Productos
+            cargarOpciones('http://localhost:5014/Productos', '#IdProducto', 'Producto');
         });
+    </script>
+
     </script>
 }

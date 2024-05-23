@@ -15,13 +15,13 @@ namespace POS.Web.Controllers
         }
         public async Task<ActionResult> Index()
         {
-            var response = await _httpClient.GetAsync("http://localhost:5014/Empleados");
+            var response = await _httpClient.GetAsync("http://localhost:5014/ProductoSucursal");
             if (response.IsSuccessStatusCode)
             { // 200 code
 
                 var content = await response.Content.ReadAsStringAsync();
-                var Empleados = JsonConvert.DeserializeObject<IEnumerable<ProductoSucursalViewModel>>(content);
-                return View("Index", Empleados);
+                var ProductoSucursal = JsonConvert.DeserializeObject<IEnumerable<ProductoSucursalViewModel>>(content);
+                return View("Index", ProductoSucursal);
 
             }
             return View(new List<ProductoSucursalViewModel>());
@@ -29,7 +29,7 @@ namespace POS.Web.Controllers
         public async Task<IActionResult> Details(int id)
         {
 
-            var response = await _httpClient.GetAsync($"http://localhost:5014/Empleado/getEmpleadoById?IdEmpleado={id}");
+            var response = await _httpClient.GetAsync($"/ProductoSucursal/getProductoSucursalById?IdProductoSucursal={id}");
 
 
             if (response.IsSuccessStatusCode)
@@ -61,7 +61,7 @@ namespace POS.Web.Controllers
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 //var response = await _httpClient.PostAsync("http://localhost:5014/Empleado/guardar", content);
-                var response = await _httpClient.PostAsync("/Empleado/guardar", content);
+                var response = await _httpClient.PostAsync("/ProductoSucursal/guardar", content);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -71,7 +71,7 @@ namespace POS.Web.Controllers
                 else
                 {
                     // Manejar el caso de error en la solicitud POST, por ejemplo, mostrando un mensaje de error.
-                    ModelState.AddModelError(string.Empty, "Error al crear el Empleado.");
+                    ModelState.AddModelError(string.Empty, "Error al crear el Producto Sucursal.");
                 }
             }
             return View(Empleado);
@@ -80,7 +80,7 @@ namespace POS.Web.Controllers
         public async Task<IActionResult> Edit(int id)
         {
 
-            var response = await _httpClient.GetAsync($"/Empleado/getEmpleadoById?IdEmpleado={id}");
+            var response = await _httpClient.GetAsync($"/ProductoSucursal/getProductoSucursalById?IdProductoSucursal={id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -107,7 +107,7 @@ namespace POS.Web.Controllers
                 var json = JsonConvert.SerializeObject(Empleado);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                var response = await _httpClient.PutAsync($"/Empleados/actualizar?idEmpleado={id}", content);
+                var response = await _httpClient.PutAsync($"/ProductoSucursal/actualizar?IdProductoSucursal={id}", content);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -117,7 +117,7 @@ namespace POS.Web.Controllers
                 else
                 {
                     // Manejar el caso de error en la solicitud PUT o POST, por ejemplo, mostrando un mensaje de error.
-                    ModelState.AddModelError(string.Empty, "Error al actualizar el Empleado.");
+                    ModelState.AddModelError(string.Empty, "Error al actualizar el Producto Sucursal.");
                 }
             }
 
@@ -126,9 +126,8 @@ namespace POS.Web.Controllers
         }
 
         public async Task<IActionResult> Delete(int id)
-        {
-            //var response = await _httpClient.DeleteAsync($"http://localhost:5014/Empleados/eliminar?IdEmpleado={id}");
-            var response = await _httpClient.DeleteAsync($"/Empleados/eliminar?IdEmpleado={id}");
+        {            
+            var response = await _httpClient.DeleteAsync($"/ProductoSucursal/eliminar?IdProductoSucursal={id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -138,7 +137,7 @@ namespace POS.Web.Controllers
             else
             {
                 // Maneja el caso de error en la solicitud DELETE, por ejemplo, mostrando un mensaje de error.
-                TempData["Error"] = "Error al eliminar el Empleado.";
+                TempData["Error"] = "Error al eliminar el Producto Sucursal.";
                 return RedirectToAction("Index");
             }
         }

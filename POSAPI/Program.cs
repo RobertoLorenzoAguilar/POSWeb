@@ -22,6 +22,7 @@ builder.Services.AddScoped<ICliente, LogicaCliente>();
 builder.Services.AddScoped<IEmpresa, LogicaEmpresa>();
 builder.Services.AddScoped<IEmpleado, LogicaEmpleado>();
 builder.Services.AddScoped<IProducto, LogicaProducto>();
+builder.Services.AddScoped<IProductoSucursal, LogicaProductoSucursal>();
 builder.Services.AddScoped<ISucursal, LogicaSucursal>();
 builder.Services.AddScoped<IVenta, LogicaVenta>();
 builder.Services.AddScoped<IVentaDetalle, LogicaVentaDetalle>();
