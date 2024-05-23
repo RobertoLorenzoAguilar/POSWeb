@@ -354,7 +354,7 @@ if (app.Environment.IsDevelopment())
 
 # POR HACER:
 1) Acomodar los script en carpetas separadas.
-2) Crear el modelo relacional.
+2) Crear el modelo relacional "diagrama".
 3) Checar la normalización de la base de datos.
 4) Corregir bug del autocompletado de los productos o servicios.
 5) Corregir porque no muestra la sucursal del empleado en el select
@@ -365,8 +365,9 @@ if (app.Environment.IsDevelopment())
 11) Mostrar errores desde el back-end API.
 12) Validaciones de Flujo en el front-end. Ejemplo: antes de agregar artículos, traer el descuento del cliente.
 13) Validaciones de detalles de venta en el back-end.
-14) Que no permita numeros como 0 o negativos en la cantidad de productos
-15) Poder agregar productos por numero de folio o id en la tabla de venta
+14) Que no permita numeros como 0 o negativos en la cantidad de productos.
+15) Poder agregar productos por numero de folio o id en la tabla de venta.
+16) Responsivo que se acomden los botenes en el listado de cada crud horizontalmente.
 
 # BUENO POR HACER:
 1) Agreger pruebas unitarias
