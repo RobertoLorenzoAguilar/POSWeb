@@ -25,7 +25,7 @@ builder.Services.AddScoped<IProducto, LogicaProducto>();
 builder.Services.AddScoped<IProductoSucursal, LogicaProductoSucursal>();
 builder.Services.AddScoped<ISucursal, LogicaSucursal>();
 builder.Services.AddScoped<IVenta, LogicaVenta>();
-builder.Services.AddScoped<IVentaDetalle, LogicaVentaDetalle>();
+
 
 
 ////evita las referencias ciclicas el codigo de abajo

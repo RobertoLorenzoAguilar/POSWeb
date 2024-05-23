@@ -42,7 +42,7 @@ namespace Negocios.Clases
             catch (Exception ex)
             {
                 // Capturar y manejar la excepción                
-                return (false, $"Error al actualizar el Empleado: {ex.Message}");
+                return (false, $"Error al actualizar el Empleado: {ex.InnerException.Message}");
             }
         }
 

@@ -117,7 +117,11 @@ namespace POS.Web.Controllers
                 else
                 {
                     // Manejar el caso de error en la solicitud PUT o POST, por ejemplo, mostrando un mensaje de error.
-                    ModelState.AddModelError(string.Empty, "Error al actualizar el Empleado.");
+                    //ModelState.AddModelError(string.Empty, "Error al actualizar el Empleado.");
+                    // Leer el contenido de la respuesta de error
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    // Manejar el caso de error en la solicitud POST, por ejemplo, mostrando un mensaje de error.
+                    ModelState.AddModelError(string.Empty, errorContent);
                 }
             }
 

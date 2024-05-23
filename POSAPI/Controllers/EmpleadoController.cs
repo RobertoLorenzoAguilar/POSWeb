@@ -153,7 +153,8 @@ namespace WebContratos.Controllers
                 }
                 else
                 {
-                    return NotFound(new { Mensaje = "La Empleado no pudo ser encontrada para actualizar." });
+                    return NotFound(new { Mensaje = $"Error al actualizar el Empleado: {resultado.ErrorMessage}" });
+                    //return NotFound(new { Mensaje = "La Empleado no pudo ser encontrada para actualizar." });
                 }
             }
             catch (Exception ex)

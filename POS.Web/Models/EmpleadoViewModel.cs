@@ -22,6 +22,7 @@ namespace POS.Web.Models
         public string ContrasenaSistema { get; set; } = null!;
 
         [Required(ErrorMessage = "El NSS del  Empleado es obligatorio.")]
+        [StringLength(11, ErrorMessage = "El NSS del Empleado no puede tener más de 11 caracteres.")]
         public string Nss { get; set; } = null!;
 
         public int IdSucursal { get; set; }
