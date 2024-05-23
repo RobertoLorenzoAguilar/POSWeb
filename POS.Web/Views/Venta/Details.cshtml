@@ -41,13 +41,32 @@
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.TotalVenta)
             </dd>
-
-            <dt class="col-sm-2 text-center text-dark">
-                Detalle Venta
+            <dt class="col-sm-12 text-center text-dark">
+                <h2>  Detalles Productos o Servicios</h2>
             </dt>
-            <dt class="col-sm-2 text-center text-dark">
-                Detalles
-            </dt>           
+
+            <div class="container">
+                <label></label>
+                <div class="row">
+                    <table id="tblDetalleVenta" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Folio</th>
+                                <th>Nombre</th>
+                                <th>Descripcion </th>
+                                <th>Precio Unitario</th>
+                                <th>Cantidad</th>
+                                <th>Retención</th>
+                                <th>Traslado</th>
+                                <th>Subtotal</th>
+                                <th class="Total">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
         </dl>
     </div>
@@ -56,3 +75,132 @@
         <a asp-action="Index" class=" btn btn-outline-success btn-sm">volver a la lista</a>
     </div>
 </div>
+
+@section Scripts {
+    @* el Orden es eimportante *@
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+    <script src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+    <!-- Incluir jQuery desde CDN -->
+    @* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> *@
+
+    <!-- Incluir jQuery DataTables desde CDN -->
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- Incluir jQuery DataTables desde CDN Iconos -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+
+    <script>
+        $(document).ready(function () {
+            //cargar tabla
+            var dataTable = $('#tblDetalleVenta').DataTable({
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+                columns: [
+                    { data: 'Folio' },
+                    { data: 'Nombre' },
+                    { data: 'Descripcion' },
+                    { data: 'PrecioUnitario' },
+                    { data: 'Cantidad' },
+                    { data: 'Retencion' }, // ISR
+                    { data: 'Traslado' },  // IVA
+                    { data: 'Subtotal' },
+                    { data: 'Total' }
+                ]
+            });
+
+
+
+
+            function agregarProductoServicioTabla(idProducto, cantidadEdit = 1) {
+                if (idProducto) {
+                    $.ajax({
+                        url: `http://localhost:5014/Producto/getProductoById?IdProducto=${idProducto}`,
+                        method: 'GET',
+                        data: { idProducto: idProducto },
+                        success: function (response) {
+                            var idProducto = response.idProducto;
+                            var folio = response.folioProducto;
+                            var nombreProducto = response.nombreProducto;
+                            var descProd = response.descripcionProducto;
+                            var precioUnitario = response.tblProductoSucursals[0].precio;
+                            let cantidad = cantidadEdit;
+                            var retencion = response.retencion;
+                            var traslado = response.traslado;
+                            var totalCalculado = 0;
+
+                            if (retencion == true) {
+                                var impuesto = .30;
+                                var totalSinImpuesto = precioUnitario * cantidad;
+                                impuesto = totalSinImpuesto * impuesto;
+                                totalCalculado = totalSinImpuesto + impuesto;
+                                traslado = "N/A";
+                                retencion = "30%";
+                            } else if (traslado == true) {
+                                var impuesto = .16;
+                                var totalSinImpuesto = precioUnitario * cantidad;
+                                impuesto = totalSinImpuesto * impuesto;
+                                totalCalculado = totalSinImpuesto + impuesto;
+                                retencion = "N/A";
+                                traslado = "16%";
+                            }
+
+                            var newData = {
+                                idProducto: idProducto,
+                                Folio: folio,
+                                Nombre: nombreProducto,
+                                Descripcion: descProd,
+                                PrecioUnitario: precioUnitario,
+                                Cantidad: cantidad,
+                                Retencion: retencion,
+                                Traslado: traslado,
+                                Subtotal: cantidad * precioUnitario,
+                                Total: totalCalculado
+                            };
+
+                            var table = $('#tblDetalleVenta').DataTable();
+                            table.row.add(newData).draw();
+
+                            $('#servicioProducto').val('');
+                            $('#servicioProductoHidden').val('');
+                            calcularSumaTotal();
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error al agregar producto:", error);
+                        }
+                    });
+                } else {
+                    console.log("No se ha seleccionado ningún producto.");
+                }
+            }
+            function cargarProductos() {
+                var lstProductos = @Html.Raw(Json.Serialize(Model.LstProducto));
+                lstProductos.forEach(function (producto) {
+                    console.log(producto);
+                    agregarProductoServicioTabla(producto.idProducto, producto.cantidad);
+                });
+            }
+            cargarProductos();
+        });
+    </script>
+}

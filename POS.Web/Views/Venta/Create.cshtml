@@ -170,8 +170,28 @@
                 calcularSumaTotal();
             });
 
-
+            // Inicializando datatable
             var dataTable = $('#tblDetalleVenta').DataTable({
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
                 columns: [
                     { data: 'Folio' },
                     { data: 'Nombre' },
@@ -318,6 +338,14 @@
                 }
             });
         });
+
+        // Evento para eliminar filas
+        $('#tblDetalleVenta tbody').on('click', 'button.eliminarBtn', function () {
+            var table = $('#tblDetalleVenta').DataTable();
+            table.row($(this).parents('tr')).remove().draw();
+            calcularSumaTotal(); // Recalcular totales después de eliminar una fila
+        });
+
 
         // Función genérica para cargar opciones en un selector
         function cargarOpciones(url, selector, optionText) {
